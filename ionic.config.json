@@ -1,0 +1,7 @@
+{
+  "name": "dulusWebapp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
