@@ -1,0 +1,138 @@
+
+  // Container principal da página
+  .container {
+    width: auto;
+    height: auto;
+    text-align: center;
+    position: relative;
+    left: 0;
+    right: 0;
+    z-index: 2;
+  }
+
+  // Estilo dos botões de controle Login e Criar conta
+  .textSegment {
+    font-size: 18px;
+  }
+
+  .espacoLinha {
+    margin-top: 4%;
+    margin-right: 10%;
+  }
+
+  // Coluna reservada para área do login
+  .sideFormLogin {
+    background-color: #fff;
+    border-radius: 30px;
+  }
+
+  // Texto de boas vindas Login
+  .welcome {
+    font-size: 76px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #3EB8AB;
+    margin-top: 10%;
+    margin-left: 10%;
+  }
+
+  // Espaço reservado para inserção dos inputs do login
+  .formArea {
+    width: 50%;
+    height: 0 auto;
+    text-align: center;
+    border-radius: 10px;
+    margin-top: 5%;
+    margin-left: 30%;
+  }
+
+  // Espaço reservado para imagem ao lado do login
+  .sideColLogin {
+    margin-top: 0px;
+    bottom: 0px;
+    height: 800px;
+    width: 100%;
+  }
+
+  // Área para inserção dos campos do formulário de criação de conta
+  .sideFormLoginCreate {
+    background-color: #fff;
+    border-radius: 30px;
+    margin-top: 100px;
+    margin-left: -30px;
+  }
+
+  // Área dos campos criar conta
+  .formAreaCreate {
+    width: 60%;
+    height: 0 auto;
+    text-align: center;
+    border-radius: 10px;
+    margin-top: 5%;
+    margin-left: 19%;
+  }
+
+  // Estilo dos itens do formulário
+  ion-item {
+    margin-bottom: 8px;
+    border-radius: 10px;
+    border: 1px solid #c2cdd1;
+    --ion-background-color: #fff;
+  }
+
+
+  
+
+  
+
+
+  
+
+  
+
+  .btnReset :hover {
+    color: #ef7288;
+  }
+
+  .subtitleText {
+    color: var(--ion-color-primary);
+    text-align: left;
+  }
+  
+  .descSubtitleText {
+    text-align: left;
+  }
+
+  .btnLogin {
+      color: #fff;
+      height: 50px;
+      font-size: 22px;
+      --ion-background-color: #3EB8AB;
+  }
+
+  .btnCreate {
+    color: #fff;
+    height: 50px;
+    --ion-background-color: #5f6bf1;
+    font-size: 22px;
+  }
+
+ 
+
+  .imageSize {
+    max-width: 800px;
+    max-height: 800px;
+    margin-top: 3%;
+  }
+
+  
+
+  .textValidator {
+    color: #ef7288;
+    font-size: 14px;
+
+
+  }
+
+  .areaValidator {
+    align-items: flex-start;
+  }

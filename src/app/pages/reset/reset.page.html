@@ -1,0 +1,35 @@
+<ion-content>
+  <div class="areaIcon">
+    <ion-icon class="iconStyle" name="lock-open-outline"></ion-icon>
+  </div>
+  
+  <div class="content">
+   
+    <h4> Insira seu e-mail abaixo para iniciar o processo de recuperaçao de senha. </h4>
+      
+    <ion-item>
+      <ion-icon name="mail"></ion-icon> &nbsp;
+      <ion-input [(ngModel)]="userReset.email" type="text"></ion-input>
+    </ion-item>
+    
+    <p> &nbsp; </p>
+    
+    <ion-button ion-button expand="block" color="btnReset" class="btnColor" (click)="resetUserPassword()"> 
+      <ion-icon name="send"> </ion-icon>
+      &nbsp; Recuperar 
+    </ion-button>
+    <ion-item lines="none">
+      <p class="textoExplicativo"> 1° - Você deve inserir seu e-mail cadastrado para iniciar o processo. </p>
+    </ion-item>
+    <ion-item lines="none">
+      <p class="textoExplicativo"> 2° - Acesse seu e-mail e clique sobre o link enviado. </p>
+    </ion-item>
+    <ion-item lines="none">
+      <p class="textoExplicativo"> 3° - Você será redirecionado para digitar a nova senha. </p>
+    </ion-item>
+    <ion-item lines="none">
+      <p class="textoExplicativo"> 4° - Após este processo retorne para pagina de login e insira sua nova senha. </p>
+    </ion-item>
+
+  </div>
+</ion-content>

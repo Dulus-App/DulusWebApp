@@ -1,0 +1,48 @@
+
+// Conteudo do popup
+.content {
+    width: 80%;
+    height: 50%;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+// Área para imagem central do popup
+.areaIcon {
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+// Estilo do icone
+.iconStyle {
+    margin-top: 10%;
+    font-size: 94px;
+    color: #ef7288;
+}
+
+.textoExplicativo {
+    color: rgb(151, 146, 146);
+    font-size: 14px;
+}
+
+.btnColor {
+    background-color: #ef7288;
+    color: #fff;
+}
+
+// Estilo do input para reset
+ion-input {
+    color: rgb(151, 146, 146); // Texto do input
+    font-size: 28px;
+}
+
+// Estilo do item
+ion-item {
+    --ion-background-color: "secondary";
+    background-color: #fff; // Background do input
+    border-radius: 10px;      // Borda do input
+}

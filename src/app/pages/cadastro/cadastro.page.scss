@@ -1,0 +1,133 @@
+
+// Área reservada aos inputs
+.formArea {
+    width: 60em;
+    margin: 0 auto;
+}
+
+// Área para os cards dos planos disponíveis
+.cardsArea {
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+// Limite de largura dos cards
+.cardPlans {
+    max-width: 300px;
+}
+
+// Imagem dentro do card dos planos
+.imgCardArea {
+    width: 300px;
+    height: 230px;
+    overflow: hidden;
+}
+
+// Estilo para imagem
+.imageCard {
+    background-size:cover;
+    background-repeat:no-repeat;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    position: relative;
+}
+
+// Alinhamento dos itens dentro do card
+.alignLeft {
+    text-align: left;
+}
+
+// Estilo do texto dos itens no card
+.itemCardPlan {
+    font-size: 17px;
+}
+
+// Área para inserir o radio-button de escolha do plano
+.itemRadio {
+    width: 300px;
+    border: 1px solid white;
+}
+
+// Estilo dos radios
+.radios{
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+}
+
+
+// Estilo do titulo
+.titleConf {
+    color: #3EB8AB;
+}
+
+// Área dos cards
+.formAreaConf {
+    width: 50em;
+    text-align: left;
+}
+
+// Coluna para alocar os card
+.centralizarForm {
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+// Estilo do título dentro do card
+.tituloCard {
+    text-align: center;
+}
+
+// Estilo do botão finalizar cadastro
+.btnFinalizarCad {
+    color: #ffffff;
+    font-size: 18px;
+    height: 40px;
+}
+
+// Espaço para alocar os botões de controle dos slides
+.linhaButtons {
+    text-align: center;
+}
+
+// Estilo do botão voltar slide
+.btnVoltar {
+    font-size: 18px;
+    height: 40px;
+}
+
+// Estilo do botão continuar slide
+.btnContinuar {
+    color: #ffffff;
+    font-size: 18px;
+    height: 40px;
+}
+
+// Estilo dos itens
+ion-item {
+    border: 1px solid rgb(184, 181, 181);
+    border-radius: 8px;
+    margin-top: 8px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
