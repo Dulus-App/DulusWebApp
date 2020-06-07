@@ -14,7 +14,7 @@ import * as firebase from 'firebase';
 import { ResetPage } from '../reset/reset.page';
 import { NavigationExtras } from '@angular/router';
 import { FormGroup, FormBuilder, Validators  } from '@angular/forms';
-
+ 
 
 // User Model para efetuar o login no firebase auth.
 export class userLogin {
