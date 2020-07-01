@@ -8,9 +8,13 @@ import { DashboardPageRoutingModule } from './dashboard-routing.module';
 
 import { DashboardPage } from './dashboard.page';
 
+// My Components
+import { MyComponentsModule } from './../../components/components.module';
+
 @NgModule({
   imports: [
     CommonModule,
+    MyComponentsModule,
     FormsModule,
     IonicModule,
     DashboardPageRoutingModule

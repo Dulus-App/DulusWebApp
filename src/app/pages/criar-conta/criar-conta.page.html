@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="auth"> Voltar </ion-back-button>
+    </ion-buttons>
+    <ion-title>Crie sua conta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col class="sideColLogin">
+        <p> &nbsp; </p>
+        <ion-img src="../../../assets/images/imageLogin.jpg"></ion-img>
+      </ion-col>
+      <ion-col class="sideFormLoginCreate">
+        <div class="formAreaCreate"> 
+          <h1 class="subtitleText"> Cadastre seu estabelecimento, é rápido e fácil.</h1>
+          <h4 class="descSubtitleText"> Insira seus dados pessoais. </h4>
+
+          <form [formGroup]="formCriarConta" (ngSubmit)="newUserEstab()">
+            <ion-item Lines="none">
+              <ion-icon class="colorMedium" slot="start" name="person-outline"></ion-icon>
+              <ion-label class="colorMedium" position="floating"> Nome </ion-label>
+              <ion-input [(ngModel)]="newUserAuth.nome" type="text" #nomeCriar class="colorMedium" formControlName="nome" >  </ion-input>
+            </ion-item>
+            <!-- Validação do campo Nome -->
+
+            <ion-item Lines="none">
+              <ion-icon class="colorMedium" slot="start" name="at-outline"></ion-icon>
+              <ion-label class="colorMedium" position="floating"> E-mail </ion-label>
+              <ion-input [(ngModel)]="newUserAuth.email" type="email" #emailCriar class="colorMedium" formControlName="email" >  </ion-input>
+            </ion-item>
+            <!-- Validação do campo E-mail -->
+            <div *ngIf="formCriarConta.controls.email.errors" class="areaValidator">
+              <!--<p *ngIf="formCriarConta.controls.email.errors.required"><small>Campo obrigatório</small></p>-->
+              <p *ngIf="formCriarConta.controls.email.errors.pattern" class="textValidator"><small>Formato de e-mail inválido</small></p>
+            </div>
+
+            <ion-item Lines="none">
+              <ion-icon class="colorMedium" slot="start" name="phone-portrait-outline"></ion-icon>
+              <ion-label class="colorMedium" position="floating"> Celular (DD) 00000-0000 </ion-label>
+              <ion-input [(ngModel)]="newUserAuth.celular" type="cell" #cellCriar class="colorMedium" formControlName="celular" (ionBlur)="blurCell()">  </ion-input>
+            </ion-item> 
+            <!-- Validação do campo Celular -->
+            <div *ngIf="formCriarConta.controls.celular.errors" class="areaValidator">
+              <p *ngIf="formCriarConta.controls.email.errors.required" class="textValidator"><small>Campo obrigatório</small></p>
+              <p *ngIf="formCriarConta.controls.celular.errors.minLength" class="textValidator"><small>Número de celular inválido</small></p>
+            </div>
+
+            <p> 
+              <!--<ion-checkbox color="primary" value="true" [(ngModel)]="newUserAuth.aceiteTermos"></ion-checkbox>
+                &nbsp; Concordo com os <b> termos de uso </b>-->
+            </p>
+              &nbsp;
+              <ion-button ion-button expand="block" class="btnCreate" type="submit" #btnCriar [disabled]="!formCriarConta.valid"> Começar cadastro </ion-button>
+            </form>
+      </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

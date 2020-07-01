@@ -80,12 +80,12 @@
   --ion-color-btnLogin: #384dc6;
   --ion-color-btnReset: #ef7288;
 }
-
-@media (prefers-color-scheme: light) {
+/*
+@media (prefers-color-scheme: dark) {
   /*
    * Dark Colors
    * -------------------------------------------
-   */
+   
 
   body {
     --ion-color-primary: #3EB8AB;
@@ -155,7 +155,7 @@
   /*
    * iOS Dark Theme
    * -------------------------------------------
-   */
+   
 
   .ios body {
     --ion-background-color: #000000;
@@ -193,7 +193,7 @@
   /*
    * Material Design Dark Theme
    * -------------------------------------------
-   */
+   
 
   .md body {
     --ion-background-color: #121212;
@@ -229,5 +229,5 @@
     --ion-toolbar-background: #1f1f1f;
 
     --ion-tab-bar-background: #1f1f1f;
-  }
-}
+  } 
+}*/

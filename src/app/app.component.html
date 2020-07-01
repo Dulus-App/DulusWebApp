@@ -1,11 +1,20 @@
 <ion-app>
   <ion-split-pane class="background_sidemenu_branco" contentId="main-content">
     <ion-menu contentId="main-content" type="overlay" class="sidemenu">
+      
       <ion-content>
         <ion-list id="inbox-list">
-          <ion-list-header>Dulus App</ion-list-header>
-          <ion-note>Juntos nos motivamos</ion-note>
+          <ion-row>
+            <div class="imageAreaLogo">
+              <ion-img class="imageSidemenuLogo" src="../assets/images/Dulus-webapp_logo.png"></ion-img>
+            </div>
+          </ion-row>
 
+          <!--<ion-list-header>Dulus App</ion-list-header>
+          <ion-note>Juntos nos motivamos</ion-note>-->
+          <ion-row>
+            &nbsp;
+          </ion-row>
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
               <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
@@ -14,15 +23,34 @@
           </ion-menu-toggle>
         </ion-list>
 
-        <ion-list id="labels-list">
+        <!--<ion-list id="labels-list">
           <ion-list-header>Labels</ion-list-header>
 
           <ion-item *ngFor="let label of labels" lines="none">
             <ion-icon slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
             <ion-label>{{ label }}</ion-label>
           </ion-item>
-        </ion-list>
+        </ion-list>-->
       </ion-content>
+      <!--<ion-footer class="sidemenuBody">
+        <ion-toolbar>
+          <ion-item Lines="none" (click)="configPage()" class="colorItem">
+            <ion-button color="dark" ion-button fill="clear" size="default" expand="full"> 
+              <ion-icon color="dark" name="settings-outline"></ion-icon>
+              &nbsp; Configurações
+            </ion-button>
+          </ion-item>
+          <ion-item Lines="none">
+            <ion-button color="dark" ion-button fill="clear" size="default" expand="full">
+              <ion-icon color="dark" name="log-out-outline"></ion-icon>--
+              &nbsp; Sair
+            </ion-button>
+          </ion-item>
+          <ion-item Lines="none">
+            <p class="appRegister"> ® Dulus App 2020 </p>
+          </ion-item>
+        </ion-toolbar>
+      </ion-footer>-->
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-split-pane>

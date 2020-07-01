@@ -1,0 +1,30 @@
+
+  <ion-header>
+    <ion-toolbar>
+      <h4 class="titlePopover"> Notificações </h4>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-scroll scrollY="true">
+      <ion-list>
+        <ion-item>
+          <ion-row>
+            <ion-col size="2">
+              <ion-icon name="flag"></ion-icon>
+            </ion-col>
+            <ion-col size="10">
+              <ion-thumbnail slot="start">
+                <img src="https://firebasestorage.googleapis.com/v0/b/ludus-25201.appspot.com/o/padrao_male.png?alt=media&token=6c60e38b-e891-47a8-9c81-086fc22eb310">
+              </ion-thumbnail>
+            </ion-col>
+            
+          </ion-row>
+        </ion-item>
+        <ion-item *ngFor="let i of notifications">
+          <h3> {{ i.title }} </h3>
+          <p> {{ i.subtitle }} </p> 
+        </ion-item>
+      </ion-list>
+
+    </ion-scroll>
+  </ion-content>

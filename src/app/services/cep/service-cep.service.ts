@@ -14,7 +14,7 @@ export class ServiceCepService {
   }
 
   getServiceCep(cep: String): any {
-    return this.http.get(`http://viacep.com.br/ws/` + cep + `/json/`)
+    return this.http.get(`https://viacep.com.br/ws/` + cep + `/json/`)
   }
 
 }

@@ -1,9 +1,155 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>dashboard</ion-title>
+    <ion-title>  {{authCurrent.uid}} </ion-title>
+    <ion-buttons slot="end">
+      <app-header-toolbar-btns></app-header-toolbar-btns>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="backgroundColor"> 
+  <ion-grid>
+    <ion-row>
+      &nbsp;
+    </ion-row>
+    <ion-row>
+      <ion-title class="saudacao">
+       <strong> Olá </strong> {{authCurrent.nome}}
+      </ion-title>
+    </ion-row>
+    <ion-row>
+      <p> {{authCurrent.email}} </p>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid >
+        
+      <ion-row class="analitycsCardArea">
+    
+
+        <ion-col size="3">
+          <ion-card class="analitycsCard colorCard">
+            
+          <ion-card-title>  </ion-card-title>
+          <ion-card-content>
+            <ion-row>
+              <ion-col size="6" class="alignTextCard">
+                <h1 class="indicadorNumero"> <strong> 13159 </strong> </h1>  
+                <p class="textCard"> Visualizações </p>
+              </ion-col>
+              <ion-col size="6" class="alignImageCard">
+                <div class="imageCardArea">
+                  <ion-icon name="eye" class="iconCardsTopo" color="light"></ion-icon>  
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              &nbsp;
+            </ion-row>
+            <ion-row>
+              <ion-title color="light">Visitas ao seu perfil</ion-title>
+            </ion-row>
+          </ion-card-content>              
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="3">
+        <ion-card class="analitycsCard colorCard">
+        <ion-card-title>  </ion-card-title>
+        <ion-card-content>
+          <ion-row>
+            <ion-col size="6" class="alignTextCard">
+            <h1 class="indicadorNumero"> <strong> 5315 </strong> </h1>
+            <p class="textCard"> Atletas </p>
+            </ion-col>
+            <ion-col size="6">
+              <div class="imageCardArea">
+                <ion-icon name="bicycle" class="iconCardsTopo" color="light"></ion-icon>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            &nbsp;
+          </ion-row>
+          <ion-row>
+            <ion-title color="light">Praticantes na sua região</ion-title>
+          </ion-row>
+        </ion-card-content>
+        
+      </ion-card>
+    </ion-col>
+
+    <ion-col size="3" >
+      <ion-card class="analitycsCard colorCard">
+      <ion-card-title>  </ion-card-title>
+        <ion-card-content>
+          <ion-row>
+            <ion-col size="4" class="alignTextCard">
+             <h1 class="indicadorNumero"> <strong> 315 </strong> </h1> <p class="textCard"> Atletas </p>
+            </ion-col>
+            <ion-col size="4" class="alignTextCard">
+              <h1 class="textCard"> 3 </h1> <p class="textCard"> Grupos </p>
+            </ion-col>
+            <ion-col size="4">
+              <div class="imageCardArea">
+                <ion-icon name="body" class="iconCardsTopo" color="light"></ion-icon>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            &nbsp;
+          </ion-row>
+          <ion-row>
+            <ion-title color="light">Seu público</ion-title>
+          </ion-row>
+        </ion-card-content>
+        
+      </ion-card>
+    </ion-col>
+    
+    <ion-col size="3">
+      <ion-card class="analitycsCard colorCard">
+        <ion-card-title>  </ion-card-title>
+        <ion-card-content>
+          <ion-row>
+            <ion-col size="6" class="alignTextCard">
+            <h1 class="indicadorNumero"> <strong> 4.7/5 </strong> </h1>
+            <p class="textCard"> Avaliação média </p>
+            </ion-col>
+            <ion-col size="6">
+              <div class="imageCardArea">
+                <ion-icon name="medal" class="iconCardsTopo" color="light"></ion-icon>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            &nbsp;
+          </ion-row>
+          <ion-row>
+            <ion-title color="light">Sua avaliação</ion-title>
+          </ion-row>
+        </ion-card-content>
+        
+      </ion-card>
+    </ion-col>
+  
+  </ion-row>
+
+  </ion-grid>
+
+  <ion-grid> 
+    <ion-row>
+      <ion-col size="6">
+        <ion-card>
+          <ion-card-title> Titulo do card </ion-card-title>
+          <ion-card-content>
+
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+ 
+    
 
 </ion-content>

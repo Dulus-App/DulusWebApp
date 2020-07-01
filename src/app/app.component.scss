@@ -132,5 +132,20 @@ ion-item.selected {
 
 .background_sidemenu_branco {
   //background-color: #fff;
+  
   background-image: linear-gradient(to top, #f3f5f7, #fff);
+}
+
+.imageAreaLogo {
+  width: auto;
+  height: 130px;
+  justify-content: center;
+  align-items: initial;
+  display: inline-flex;
+  
+}
+
+.imageSidemenuLogo {
+  width: 60%;
+  height: auto;  
 }

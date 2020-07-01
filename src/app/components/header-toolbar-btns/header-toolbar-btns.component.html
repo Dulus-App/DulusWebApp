@@ -1,0 +1,19 @@
+    
+  <ion-buttons slot="end">
+    <ion-buttons slot="primary">
+      <ion-button (click)="notificationsPopover($event)">
+        <ion-icon color="secondary" name="notifications"></ion-icon>
+      </ion-button>
+      <ion-button >
+        <ion-icon name="settings"></ion-icon>
+      </ion-button>
+      <ion-thumbnail slot="start">
+        <!--<img src="https://firebasestorage.googleapis.com/v0/b/ludus-25201.appspot.com/o/padrao_male.png?alt=media&token=6c60e38b-e891-47a8-9c81-086fc22eb310">-->
+        <img src="{{imgProfile}}">
+      </ion-thumbnail>
+      <ion-button (click)="presentPopover($event)">
+        <ion-icon name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-buttons>
+  

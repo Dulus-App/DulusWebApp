@@ -13,6 +13,23 @@ export class AppComponent implements OnInit {
   public selectedIndex = 0;
   public appPages = [
     {
+      title: 'Dashboard',
+      url: 'dashboard',
+      icon: 'grid'
+    }, 
+    {
+      title: 'Perfil',
+      url: 'profile',
+      icon: 'person'
+    },
+    {
+      title: 'posts',
+      url: 'posts',
+      icon: 'paper-plane'
+    }
+    
+    /*,
+    {
       title: 'Inbox',
       url: '/folder/Inbox',
       icon: 'mail'
@@ -41,9 +58,9 @@ export class AppComponent implements OnInit {
       title: 'Spam',
       url: '/folder/Spam',
       icon: 'warning'
-    }
+    } */
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+  public labels = [];
 
   constructor(
     private platform: Platform,

@@ -1,7 +1,7 @@
 
 // Área reservada aos inputs
 .formArea {
-    width: 60em;
+   // width: 60em;
     margin: 0 auto;
 }
 
@@ -113,6 +113,11 @@
     height: 40px;
 }
 
+.planEscolhido {
+    font-size: 2em;
+    color: #3EB8AB;
+}
+
 // Estilo dos itens
 ion-item {
     border: 1px solid rgb(184, 181, 181);
@@ -120,8 +125,33 @@ ion-item {
     margin-top: 8px;
 }
 
+.iconCheck {
+    font-size: 2em;
+}
 
 
+@media(max-width:920px) {
+
+    .formAreaConf {
+        width: auto;
+    }
+
+}
+
+
+@media(max-width: 770) {
+    .colformEstab{
+        display: inline;
+    }
+
+    ion-col{
+        display: inline;
+    }
+
+    .formAreaConf {
+        width: auto;
+    }
+}
 
 
 

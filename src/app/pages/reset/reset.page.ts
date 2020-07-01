@@ -35,6 +35,11 @@ export class ResetPage implements OnInit {
   ngOnInit() {
   }
 
+  // Fechar o modal
+  closeModal() {
+    this.modalCtrl.dismiss();
+  }
+
   resetUserPassword() {
 
     // Envia e-mail para usuário cadastrado.

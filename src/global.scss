@@ -31,3 +31,13 @@
     font-family: 'Kreon';
     src: url('assets/fonts/Kreon-VariableFont_wght.ttf');//path to your font file
   }
+
+  // Popover das notificações
+  .notificationPopover {
+    --width: 400px;
+  }
+
+  // Background das páginas
+  .backgroundColor {
+    --ion-background-color: #f3f5f7;
+}

@@ -12,10 +12,15 @@ import * as firebase from 'firebase';
 
 // Pages
 import { ResetPage } from '../reset/reset.page';
-import { NavigationExtras } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators  } from '@angular/forms';
+import { AuthServiceService } from 'src/app/services/auth/auth-service.service';
  
-
+export class currentAuth {
+  uid: string;
+  displayName: string;
+  email: string;
+}
 // User Model para efetuar o login no firebase auth.
 export class userLogin {
   email: string;
@@ -52,6 +57,8 @@ export class AuthPage implements OnInit {
   // Objetos para armazenas os dados de login e criação de conta dos usuários
   public userAuth: userLogin = new userLogin();
   public newUserAuth: newUser = new newUser();
+  public user_auth: currentAuth = new currentAuth();
+  
 
   constructor(
               public  navCtrl:     NavController,
@@ -61,6 +68,8 @@ export class AuthPage implements OnInit {
               public  alertCtrl:   AlertService,
               public  loadingCtrl: LoadingService,
               private storage:     Storage,
+              private router:      Router,
+              public userService:  AuthServiceService,
               public  fAuth:       AngularFireAuth) { 
 
 
@@ -74,11 +83,30 @@ export class AuthPage implements OnInit {
   }
 
   ionViewWillEnter() {
+
+
+    
   }
   
   ngOnInit() {
     // Desabilita a exibição do sidemenu.
     this.menuCtrl.enable(false);
+
+    // Verificar se usuário está logado
+    return new Promise((resolve, reject) => {
+      firebase.auth().onAuthStateChanged((user: firebase.User) => {
+        if (user) {
+          // Usuário logado - Redirecionar para dashboard
+          this.router.navigate(['/dashboard']);
+          resolve(true);
+        } else {
+          // Usuário não logado
+          resolve(false);
+        }
+      });
+    });
+
+
   }
 
   // Verifica Tabs e modifica o foco.
@@ -108,7 +136,7 @@ export class AuthPage implements OnInit {
     console.log("reset de senha");
     // Show modal
     const modal = await this.modalCtrl.create({
-      component: ResetPage
+      component: ResetPage,
     });
     return await modal.present();
 
@@ -123,9 +151,68 @@ export class AuthPage implements OnInit {
     this.navCtrl.navigateForward(['cadastro'], navExtras);
   }
 
+ async handleLoginService() {
 
-  // Funçaõ do botão de login
-  handleLogin() {
+    // Show Loading
+    this.loadingCtrl.presentLoadingDefault();
+
+   await this.userService.loginFirebase(this.userAuth.email, this.userAuth.password)
+      .then((data) => {
+
+        // Criar sessão do usuário
+        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+          .then(() => {
+            // Limpa dados do usuário no navegador.
+            this.storage.set('uid', data.uid);
+          });
+
+        // Dismiss Loading
+        this.loadingCtrl.dismissLoading();
+
+
+        // Enviar dados para proxima tela de cadastro
+        let navExtrasAuth: NavigationExtras = {state: {userAuth: this.user_auth}}
+
+
+        // Após autenticação envia rota para o Dashboard
+        this.navCtrl.navigateRoot(['dashboard'], navExtrasAuth);
+      }, (error) => {
+        
+        // Dismiss Loading
+       // this.loadingCtrl.presentLoadingDefault();
+       this.loadingCtrl.dismissLoading();
+
+        // Trata mensagem de erro em portugues
+        let messageError: string;
+
+        switch(error.code){
+          case 'auth/wrong-password':
+            messageError = "Usuário ou senha incorretos";
+            break;
+          case 'auth/user-not-found':
+            messageError = "Usuário de e-mail não encontrado";
+            break;
+          case 'auth/invalid-email':
+            messageError = "Email com formato errado. Por favor verifique";
+            break;
+        }
+
+        console.log(error);
+        // Apresenta mensagem de erro no Alert
+        this.alertCtrl.showAlertwithMessage("Erro", "Por favor verificar", messageError); 
+
+      })
+  }
+
+
+  // Funçaõ do botão de criar nova conta
+  handleNewUserService() {
+
+    this.navCtrl.navigateForward('/criar-conta');
+
+    /*
+    // Show Loading
+    this.loadingCtrl.presentLoadingDefault();
 
     // Efetua login no Firebase
     this.fAuth.auth.signInWithEmailAndPassword(this.userAuth.email, this.userAuth.password)
@@ -142,12 +229,15 @@ export class AuthPage implements OnInit {
           });
 
         // Dismiss Loading
-        //this.loadingCtrl.dismissLoading();
-     
+        this.loadingCtrl.dismissLoading();
+
         // Após autenticação envia rota para o Dashboard
         this.navCtrl.navigateRoot('dashboard');
       }, (error) => {
         
+        // Dismiss Loading
+        this.loadingCtrl.presentLoadingDefault();
+
         // Trata mensagem de erro em portugues
         let messageError: string;
 
@@ -166,7 +256,9 @@ export class AuthPage implements OnInit {
         // Apresenta mensagem de erro no Alert
         this.alertCtrl.showAlertwithMessage("Erro", "Por favor verificar", messageError); 
 
-      });
+      }); */
   }
+
+  
 
 }

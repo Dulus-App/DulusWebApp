@@ -13,12 +13,13 @@ import { ServiceCepService } from 'src/app/services/cep/service-cep.service';
 // Firebase
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'Firebase';
+import * as firebase from 'firebase';
 
 // User Model para controle de dados e persistência das informações.
 export class User {
   nome:         string;
   email:        string;
+  celular:      string;
   password:     string;
   cnpj:         string;
   cpf:          string;
@@ -53,6 +54,7 @@ export class CadastroPage implements OnInit {
 
   // Controle de tab do campo
   @ViewChild('cnpj') cnpjField;
+  @ViewChild('userNameField') userNameField;
 
   // Variáveis para controle dos buttons
   public showBack = false;
@@ -60,6 +62,8 @@ export class CadastroPage implements OnInit {
 
   // Dados dos planos
   public planos: any;
+  public planoEscolhido: any;
+  public planoResumo: any[] = [];
 
   selectedRadioGroup:any;
   
@@ -77,6 +81,9 @@ export class CadastroPage implements OnInit {
   
   // Input para validar a senha
   validaSenha: string;
+
+  // Cor do button
+  public buttonColor: string = "";
 
   public newUserEstab:User = new User();
   public progress: number = 0.2;
@@ -97,8 +104,8 @@ export class CadastroPage implements OnInit {
       'cnpj':        [null, Validators.compose([Validators.required, Validators.minLength(14), Validators.maxLength(18)])],
       'rz_social':   [null, Validators.compose([Validators.required, Validators.minLength(1)])],
       'nomeEstab':   [null, Validators.compose([Validators.required, Validators.minLength(1)])],
-      'telefone':    [null, Validators.compose([Validators.required, Validators.minLength(9)])],
-      'telefone2':   [null, Validators.compose([Validators.required, Validators.minLength(9)])],
+      'telefone':    [null, Validators.compose([Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{12}$'), Validators.minLength(8) ])],
+      'telefone2':   [null, Validators.compose([Validators.pattern('^((\\+91-?)|0)?[0-9]{8}$'), Validators.minLength(8)])],
       'cep':         [null, Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(9)])],
       'cidade':      [null, Validators.compose([Validators.required, Validators.minLength(2)])],
       'estado':      [null, Validators.compose([Validators.required, Validators.minLength(2)])],
@@ -138,6 +145,10 @@ export class CadastroPage implements OnInit {
   returnTabIndex() {
     this.cnpjField.setFocus();
     console.log("campo complemento");
+  }
+
+  returnRgField() {
+    this.userNameField.setFocus();
   }
 
   // Controle do botão avançar slide no cadastro
@@ -215,8 +226,8 @@ export class CadastroPage implements OnInit {
       }
       else {
         // Bloqueia
-       erroForm = true;
-       this.newUserEstab.cep = null;
+      // erroForm = true; // Comentado enquanto o problema do HTTPS não for solucionado
+      //this.newUserEstab.cep = null;
       }
     }
 
@@ -391,6 +402,7 @@ export class CadastroPage implements OnInit {
         // Sobre o dono do estabelecimento e login
         username:    this.newUserEstab.nome,
         email:       this.newUserEstab.email,
+        celular:     this.newUserEstab.celular,
         cpf:         this.newUserEstab.cpf,
         rg:          this.newUserEstab.rg,
 
@@ -424,6 +436,7 @@ export class CadastroPage implements OnInit {
     this.newUserEstab.cnpj        = null;
     this.newUserEstab.rz_social   = null;
     this.newUserEstab.nomeEstab   = null;
+    this.newUserEstab.celular     = null;
     this.newUserEstab.telefone    = null;
     this.newUserEstab.telefone2   = null;
     this.newUserEstab.rua         = null;
@@ -479,6 +492,26 @@ export class CadastroPage implements OnInit {
       this.alertCtrl.showAlertwithMessage("Erro", "", "CEP inválido");
       
     });
+  }
+
+  // Escolha do plano
+ async escolhePlanoBtn(event: any, i: any) {
+    console.log(event.target.textContent);
+
+    let escolhido: number = i;
+    console.log(escolhido);
+    this.newUserEstab.plano = event.target.textContent;
+
+    for (let key of this.planos) {
+      let nome_plano_key, plano_escolhido: string;
+      nome_plano_key = key.nome_plano.toLowerCase().trim();
+      plano_escolhido = this.newUserEstab.plano.toString().toLowerCase().trim();
+
+      if(nome_plano_key === plano_escolhido) {
+        this.planoResumo = Object.values(key.itens);
+        console.log("this.planoResumo: ", this.planoResumo);
+      } 
+    }
   }
 
 }

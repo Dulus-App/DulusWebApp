@@ -11,6 +11,22 @@
   <!-- Controle de progresso das telas do cadastro -->
   <ion-progress-bar color="primary" value="{{this.progress}}"></ion-progress-bar>
   
+  <!-- Botões de controle dos slides com os formulários -->
+  <ion-row class="linhaButtons">
+    <ion-col>
+      <ion-button ion-button color="light" class="btnVoltar" *ngIf="showBack" (click)="voltarCad()"> 
+        <ion-icon name="arrow-back-outline"></ion-icon>
+        &nbsp; Anterior 
+      </ion-button> 
+    </ion-col>
+    <ion-col>
+      <ion-button ion-button class="btnContinuar" *ngIf="showContinuar" (click)="continuarCad()"> 
+        Próximo &nbsp;
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
   <ion-slides>
     <ion-slide>
       <ion-row>
@@ -24,14 +40,14 @@
                  
                   <form [formGroup]="formEstab">
                   <ion-row>
-                    <ion-col size="6">
+                    <ion-col class="colformEstab">
                       <ion-item>
                         <ion-icon color="medium" slot="start" name="business-outline"></ion-icon>
                         <ion-label color="medium" position="floating">CNPJ</ion-label>
                         <ion-input [(ngModel)]="newUserEstab.cnpj" type="text" formControlName="cnpj" #cnpj (ionBlur)="validaCnpj()"></ion-input>
                       </ion-item>
                     </ion-col>
-                    <ion-col size="6">
+                    <ion-col class="colformEstab">
                       <ion-item>
                         <ion-icon color="medium" slot="start" name="document-text-outline"></ion-icon>
                         <ion-label color="medium" position="floating">Razão social</ion-label>
@@ -41,46 +57,46 @@
                   </ion-row>
               
                   <ion-row>
-                    <ion-col size="6">
+                    <ion-col >
                       <ion-item>
                         <ion-icon color="medium" slot="start" name="home-outline"></ion-icon>
                         <ion-label color="medium" position="floating">Nome do seu estabelecimento</ion-label>
                         <ion-input [(ngModel)]="newUserEstab.nomeEstab" type="text" name="nomeEstab" formControlName="nomeEstab"></ion-input>
                       </ion-item>
                     </ion-col>
-                    <ion-col size="3">
+                    <ion-col >
                       <ion-item>
                         <ion-icon color="medium" slot="start" name="call-outline"></ion-icon>
                         <ion-label color="medium" position="floating">Telefone</ion-label>
-                        <ion-input [(ngModel)]="newUserEstab.telefone" type="tel" formControlName="telefone"></ion-input>
+                        <ion-input [(ngModel)]="newUserEstab.telefone" type="numeric" formControlName="telefone" autocomplete="on" mask="(__) _____-____"></ion-input>
                       </ion-item>
                     </ion-col>
-                    <ion-col size="3">
+                    <ion-col >
                       <ion-item>
-                        <ion-icon color="medium" slot="start" name="phone-portrait-outline"></ion-icon>
+                        <ion-icon color="medium" slot="start" name="call-outline"></ion-icon>
                         <ion-label color="medium" position="floating">Telefone 2</ion-label>
-                        <ion-input [(ngModel)]="newUserEstab.telefone2" type="tel" formControlName="telefone2"></ion-input>
+                        <ion-input [(ngModel)]="newUserEstab.telefone2" type="numeric" formControlName="telefone2"></ion-input>
                       </ion-item>
                     </ion-col>
                   </ion-row>
                 
         
                   <ion-row>
-                    <ion-col size="4">
+                    <ion-col>
                       <ion-item>
                         <ion-icon color="medium" slot="start" name="map-outline"></ion-icon>
                         <ion-label color="medium" position="floating">CEP</ion-label>
                         <ion-input [(ngModel)]="newUserEstab.cep" type="numeric" formControlName="cep" (ionBlur)="buscaCEP()"></ion-input>
                       </ion-item>
                     </ion-col>
-                    <ion-col size="4">
+                    <ion-col>
                       <ion-item>
                         <ion-icon color="medium" slot="start" name="map-outline"></ion-icon>
                         <ion-label color="medium" position="floating">Cidade</ion-label>
                         <ion-input [(ngModel)]="newUserEstab.cidade" type="text" formControlName="cidade"></ion-input>
                       </ion-item>
                     </ion-col>
-                    <ion-col size="4">
+                    <ion-col>
                       <ion-item>
                         <ion-icon color="medium" slot="start" name="map-outline"></ion-icon>
                         <ion-label color="medium" position="floating">Estado</ion-label>
@@ -114,30 +130,25 @@
                           <ion-select-option value="TO">Tocantins</ion-select-option>
                         </ion-select>
                       </ion-item>
-                      <!--<ion-item>
-                        <ion-icon color="medium" slot="start" name="map-outline"></ion-icon>
-                        <ion-label color="medium" position="floating">Estado</ion-label>
-                        <ion-input [(ngModel)]="newUserEstab.estado" type="text" formControlName="estado"></ion-input>
-                      </ion-item>-->
                     </ion-col>
                   </ion-row>
 
                   <ion-row>
-                    <ion-col size="5">
+                    <ion-col >
                       <ion-item>
                         <ion-icon color="medium" slot="start" name="map-outline"></ion-icon>
                         <ion-label color="medium" position="floating">Rua</ion-label>
                         <ion-input [(ngModel)]="newUserEstab.rua" type="text" formControlName="rua"></ion-input>
                       </ion-item>
                     </ion-col>
-                    <ion-col size="5">
+                    <ion-col>
                       <ion-item>
                         <ion-icon color="medium" slot="start" name="map-outline"></ion-icon>
                         <ion-label color="medium" position="floating">Bairro</ion-label>
                         <ion-input [(ngModel)]="newUserEstab.bairro" type="text" formControlName="bairro"></ion-input>
                       </ion-item>
                     </ion-col>
-                    <ion-col size="2">
+                    <ion-col>
                       <ion-item>
                         <ion-icon color="medium" slot="start" name="map-outline"></ion-icon>
                         <ion-label color="medium" position="floating">Numero</ion-label>
@@ -147,7 +158,7 @@
                   </ion-row>
         
                   <ion-row>
-                    <ion-col size="12">
+                    <ion-col>
                       <ion-item>
                         <ion-icon color="medium" slot="start" name="attach-outline"></ion-icon>
                         <ion-label color="medium" position="floating">Complemento(opcional)</ion-label>
@@ -172,14 +183,17 @@
         <ion_row>
           <ion-col size="12">
             <h1> Planos disponíveis </h1>
+            <p> Plano escolhido <b class="planEscolhido"> {{ newUserEstab.plano }} </b> </p>
           </ion-col>
         </ion_row>
           <ion-row class="cardsArea">
             <ion-row>
-                <ion-card *ngFor="let item of planos" class="cardPlans">
+                <ion-card *ngFor="let item of planos; let i = index" class="cardPlans">
                   <div class="imgCardArea">
-                    <ion-img class="imageCard" src="{{item.url_image}}"></ion-img>
+                    <ion-img class="imageCard" src="{{item.url_image}}">
+                    </ion-img>
                   </div>
+                  <ion-icon name="checkmark-outline" class="iconCheck" color="primary" *ngIf="item.nome_plano == this.newUserEstab.plano"></ion-icon>
                   <ion-card-title>
                     {{item.nome_plano}}
                   </ion-card-title>
@@ -190,7 +204,7 @@
                       </ion-row>
                       <ion-row>
                         <ion-col size="2">
-                          <ion-icon name="radio-button-on-outline" color="primary" *ngIf="item.itens.nome_item"></ion-icon>
+                          <ion-icon name="checkmark-outline" class="iconCheck" color="primary" *ngIf="item.itens.nome_item"></ion-icon>
                         </ion-col>
                         <ion-col size="10" class="alignLeft">
                           &nbsp; <span class="itemCardPlan"> {{item.itens.nome_item}} </span> 
@@ -198,7 +212,7 @@
                       </ion-row>
                       <ion-row>
                         <ion-col size="2">
-                          <ion-icon name="radio-button-on-outline" color="primary" *ngIf="item.itens.nome_item2"></ion-icon>
+                          <ion-icon name="checkmark-outline" class="iconCheck" color="primary" *ngIf="item.itens.nome_item2"></ion-icon>
                         </ion-col>
                         <ion-col size="10" class="alignLeft">
                           &nbsp;<span class="itemCardPlan"> {{item.itens.nome_item2}} </span>
@@ -206,7 +220,7 @@
                       </ion-row>
                         <ion-row>
                           <ion-col size="2">
-                            <ion-icon name="radio-button-on-outline" color="primary" *ngIf="item.itens.nome_item3"></ion-icon>
+                            <ion-icon name="checkmark-outline" class="iconCheck" color="primary" *ngIf="item.itens.nome_item3"></ion-icon>
                           </ion-col>
                           <ion-col size="10" class="alignLeft">
                             &nbsp; <span class="itemCardPlan">{{item.itens.nome_item3}}  </span>
@@ -214,7 +228,7 @@
                       </ion-row>
                         <ion-row>
                           <ion-col size="2">
-                            <ion-icon name="radio-button-on-outline" color="primary" *ngIf="item.itens.nome_item4"></ion-icon>
+                            <ion-icon name="checkmark-outline" class="iconCheck" color="primary" *ngIf="item.itens.nome_item4"></ion-icon>
                           </ion-col>
                           <ion-col size="10" class="alignLeft">
                             &nbsp; <span class="itemCardPlan">{{item.itens.nome_item4}}  </span>
@@ -222,11 +236,16 @@
                       </ion-row>
                         <ion-row>
                           <ion-col size="2">
-                            <ion-icon name="radio-button-on-outline" color="primary" *ngIf="item.itens.nome_item5"></ion-icon>
+                            <ion-icon name="checkmark-outline" class="iconCheck" color="primary" *ngIf="item.itens.nome_item5"></ion-icon>
                           </ion-col>
                           <ion-col size="10" class="alignLeft">
                             &nbsp; <span class="itemCardPlan">{{item.itens.nome_item5}} </span>
                           </ion-col>
+                      </ion-row>
+                      <ion-row>
+                        <ion-col>
+                          <ion-button ion-button expand="full" color="primary" (click)="escolhePlanoBtn($event, i)" id="{{item.nome_plano}"> {{item.nome_plano}} </ion-button>
+                        </ion-col>
                       </ion-row>
                     </ion-grid>
                   </ion-card-content>
@@ -234,16 +253,16 @@
               </ion-row>
               
             </ion-row>
-                <ion-row class="radios">
-                   <ion-radio-group *ngFor="let item of planos" (ionChange)="radioGroupChange($event)" [(ngModel)]="newUserEstab.plano">
-                     <ion-card class="cardPlans">
-                       <ion-item lines="none" class="itemRadio">
-                         <ion-label>{{item.nome_plano}}</ion-label>
-                         <ion-radio ion-radio slot="start" value="{{item.nome_plano}}" tabindex="-1"></ion-radio>
-                       </ion-item>   
-                     </ion-card>
-                  </ion-radio-group>  
-                </ion-row>
+            <!--<ion-row class="radios">
+                <ion-radio-group *ngFor="let item of planos" (ionChange)="radioGroupChange($event)" [(ngModel)]="newUserEstab.plano">
+                  <ion-card class="cardPlans">
+                    <ion-item lines="none" class="itemRadio">
+                      <ion-label>{{item.nome_plano}}</ion-label>
+                      <ion-radio ion-radio slot="start" value="{{item.nome_plano}}" tabindex="-1"></ion-radio>
+                    </ion-item>   
+                  </ion-card>
+              </ion-radio-group>  
+            </ion-row>-->
       </ion-grid> 
     </ion-slide>
     
@@ -262,21 +281,21 @@
             <div class="formArea">
               <form [formGroup]="formUserData">
                 <ion-row>
-                  <ion-col size="4">
+                  <ion-col>
                       <ion-item>
                         <ion-icon color="medium" slot="start" name="person-outline"></ion-icon>
                         <ion-label color="medium" position="floating"> Nome de usuário </ion-label>
-                        <ion-input [(ngModel)]="newUserEstab.username" type="text" formControlName="username"></ion-input>
+                        <ion-input [(ngModel)]="newUserEstab.username" type="text" formControlName="username" #userNameField></ion-input>
                       </ion-item>
                     </ion-col>
-                    <ion-col size="4">
+                    <ion-col>
                       <ion-item>
                         <ion-icon color="medium" slot="start" name="key-outline"></ion-icon>
                         <ion-label color="medium" position="floating"> Senha </ion-label>
                         <ion-input [(ngModel)]="newUserEstab.userPassword" type="password" formControlName="userPassword"></ion-input>
                       </ion-item>
                     </ion-col>
-                    <ion-col size="4">
+                    <ion-col>
                       <ion-item>
                         <ion-icon color="medium" slot="start" name="key-outline"></ion-icon>
                         <ion-label color="medium" position="floating"> Repita sua senha </ion-label>
@@ -286,21 +305,21 @@
                 </ion-row>
 
                 <ion-row>
-                  <ion-col size="4">
+                  <ion-col class="colformEstab">
                     <ion-item>
                       <ion-icon color="medium" slot="start" name="card-outline"></ion-icon>
                       <ion-label color="medium" position="floating"> CPF </ion-label>
                       <ion-input [(ngModel)]="newUserEstab.cpf" type="text" formControlName="cpf"></ion-input>
                     </ion-item>
-                  </ion-col>
-                  <ion-col size="4">
+                  
+                  
                     <ion-item>
                       <ion-icon color="medium" slot="start" name="card-outline"></ion-icon>
                       <ion-label color="medium" position="floating"> RG </ion-label>
-                      <ion-input [(ngModel)]="newUserEstab.rg" type="text" formControlName="rg"></ion-input>
+                      <ion-input [(ngModel)]="newUserEstab.rg" type="text" formControlName="rg" (ionBlur)="returnRgField()"></ion-input>
                     </ion-item>
                   </ion-col>
-                  <ion-col size="4"></ion-col>
+                  
                 </ion-row>
               </form>           
             </div>
@@ -328,8 +347,14 @@
     <ion-slide>
       <ion-grid>
         <ion-row>
-          <ion-col size="12">
+          <ion-col>
             <h1 class="titleConf"> Confirme seus dados abaixo para finalizar o cadastro </h1>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <!--- Botão para finalizar o cadastro por completo e salvar dados -->
+            <ion-button ion-button class="btnFinalizarCad" (click)="finalizarCadastro()" > Finalizar </ion-button>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -340,53 +365,53 @@
                 <ion-card-title class="tituloCard"> Dados do estabelecimento </ion-card-title>
                 <ion-card-content>
                   <ion-row>
-                    <ion-col size="6">
+                    <ion-col>
                       <p> <strong> CNPJ: &nbsp; </strong> {{ this.newUserEstab.cnpj }} </p>
                     </ion-col>
-                    <ion-col size="6">
+                    <ion-col>
                       <p> <strong> Razão social: &nbsp; </strong> {{ this.newUserEstab.rz_social }} </p>
                     </ion-col>
                   </ion-row>
                   <ion-row>
-                    <ion-col size="12">
+                    <ion-col>
                       <p> <strong> Nome do estabelecimento: &nbsp; </strong> {{ this.newUserEstab.nomeEstab }} </p>
                     </ion-col>
                   </ion-row>
                   <ion-row>
-                    <ion-col size="6">
+                    <ion-col>
                       <p> <strong> Telefone: &nbsp; </strong> {{ this.newUserEstab.telefone }} </p>
                     </ion-col>
-                    <ion-col size="6">
+                    <ion-col >
                       <p> <strong> Telefone 2: &nbsp; </strong> {{ this.newUserEstab.telefone2 }} </p>
                     </ion-col>
                   </ion-row> 
                   <ion-row>
-                    <ion-col size="3">
+                    <ion-col>
                       <p> <strong> Rua: &nbsp; </strong> {{ this.newUserEstab.rua }} </p>
                     </ion-col>
-                    <ion-col size="3">
+                    <ion-col>
                       <p> <strong> Cidade: &nbsp; </strong> {{ this.newUserEstab.cidade }} </p>
                     </ion-col>
-                    <ion-col size="3">
+                    <ion-col>
                       <p> <strong> Estado: &nbsp; </strong> {{ this.newUserEstab.estado }} </p>
                     </ion-col>
-                    <ion-col size="3">
+                    <ion-col >
                       <p> <strong> CEP: &nbsp; </strong> {{ this.newUserEstab.cep }} </p>
                     </ion-col>
                   </ion-row>
                   <ion-row>
-                    <ion-col size="3">
+                    <ion-col>
                       <p> <strong> Numero: &nbsp; </strong> {{ this.newUserEstab.numero }} </p>
                     </ion-col>
-                    <ion-col size="9">
+                    <ion-col>
                       <p> <strong> Complemento: &nbsp; </strong> {{ this.newUserEstab.complemento }} </p>
                     </ion-col>
                   </ion-row>
                 </ion-card-content>
               </ion-card>
-              <ion-row>
+              <!--<ion-row>
                 &nbsp;
-              </ion-row>
+              </ion-row>-->
               <ion-card>
                 <ion-card-title class="tituloCard"> Plano escolhido </ion-card-title>
                 <ion-card-content>
@@ -394,32 +419,40 @@
                     <p> <strong> Plano: &nbsp; </strong> {{ this.newUserEstab.plano }} </p>
                   </ion-row>
                   <ion-row>
+                    <ion-list>
+                        <p *ngFor="let plan of planoResumo"> - &nbsp; {{plan}} </p>
+                    </ion-list>
+                  </ion-row>
+                  <ion-row>
                     Obs.: Todos os planos possuem 3 meses gratuitos.
                   </ion-row>
                 </ion-card-content>
               </ion-card>
-              <ion-row>
+              <!--<ion-row>
                 &nbsp;
-              </ion-row>
+              </ion-row>-->
               <ion-card>
                 <ion-card-title class="tituloCard"> Dados sobre o dono do estabelecimento e login de acesso </ion-card-title>
                 <ion-card-content>
                   <ion-row>
-                    <ion-col size="4">
+                    <ion-col>
                       <p> <strong> Nome completo: &nbsp; </strong> {{ this.newUserEstab.nome }} </p>
                     </ion-col>
-                    <ion-col size="5">
+                    <ion-col>
                       <p> <strong> E-mail: &nbsp; </strong> {{ this.newUserEstab.email }} </p>
                     </ion-col>
-                    <ion-col size="3">
+                    <ion-col>
                       <p> <strong> Usuário: &nbsp; </strong> {{ this.newUserEstab.username }} </p>
                     </ion-col>
                   </ion-row>
                   <ion-row>
-                    <ion-col size="4">
+                    <ion-col>
                       <p> <strong> CPF: &nbsp; </strong> {{ this.newUserEstab.cpf }} </p>
                     </ion-col>
-                    <ion-col size="4">
+                    <ion-col>
+                      <p> <strong> RG: &nbsp; </strong> {{ this.newUserEstab.rg }} </p>
+                    </ion-col>
+                    <ion-col>
                       <p> <strong> Celular: &nbsp; </strong> {{ this.newUserEstab.celular }} </p>
                     </ion-col>
                   </ion-row>
@@ -430,28 +463,13 @@
             </ion-col>
           </ion-row>
           
-          <!--- Botão para finalizar o cadastro por completo e salvar dados -->
-          <ion-button ion-button class="btnFinalizarCad" (click)="finalizarCadastro()" > Finalizar </ion-button>
+          
         </ion-grid>
     </ion-slide>
  
   </ion-slides>
 
 
-  <!-- Botões de controle dos slides com os formulários -->
-  <ion-row class="linhaButtons">
-    <ion-col>
-      <ion-button ion-button color="light" class="btnVoltar" *ngIf="showBack" (click)="voltarCad()"> 
-        <ion-icon name="arrow-back-outline"></ion-icon>
-        &nbsp; Anterior 
-      </ion-button>
-    </ion-col>
-    <ion-col>
-      <ion-button ion-button class="btnContinuar" *ngIf="showContinuar" (click)="continuarCad()"> 
-        Próximo &nbsp;
-        <ion-icon name="arrow-forward-outline"></ion-icon>
-      </ion-button>
-    </ion-col>
-  </ion-row>
+  
 
 </ion-content>

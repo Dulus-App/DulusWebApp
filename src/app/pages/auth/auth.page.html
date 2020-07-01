@@ -1,11 +1,9 @@
 
-<ion-header> </ion-header>
-
 <!-- Controle dos slides de login e criação de conta -->
 <ion-content class="swiper-no-swiping">
   <div class="container">
-    <ion-segment (ionChange)="segmentChanged($event)" value="segmentSignin">
-      <ion-segment-button value="segmentSignin" tabindex="-1">
+    <ion-segment (ionChange)="segmentChanged($event)" value="segmentSignin" class="colorWhite">
+      <ion-segment-button value="segmentSignin" tabindex="-1" class="colorWhite">
         <ion-label class="textSegment">Entrar</ion-label>
       </ion-segment-button>
       <ion-segment-button value="segmentSignup" tabindex="-1">
@@ -15,40 +13,38 @@
   </div>
 
   <!-- Slides de navegação entre Login e criação de conta -->
-  <ion-slides>
+  <ion-slides class="colorWhite">
     <!-- Login - Slide -->
     <ion-slide>
       <ion-grid>
         <ion-row class="espacoLinha">
-          <ion-col size="6" class="sideFormLogin">
-            <h2> 
-              &nbsp; Dulus App 
-            </h2>
-
-          <h3 class="welcome"><b> Bem vindo. </b></h3>
-
-          <!-- Formulário de login -->
-          <div class="formArea"> 
-            <h3> Entre na sua conta. </h3>
+          <ion-col  class="sideFormLogin">
+            <!--<h3 class="welcome"><b> Bem vindo. </b></h3>-->
+            <!-- Formulário de login -->
+            <div class="formArea"> 
+              <ion-img class="imageSizeLogo" src="../../../assets/images/Dulus_logo.png"></ion-img>
+            <h1> Entre na sua conta. </h1>
             <ion-item>
-              <ion-icon color="medium" slot="start" name="at-outline"></ion-icon>
-              <ion-label color="medium" position="floating">E-mail</ion-label>
+              <ion-icon class="colorMedium"  slot="start" name="at-outline"></ion-icon>
+              <ion-label class="colorMedium" position="floating">E-mail</ion-label>
               <ion-input [(ngModel)]="userAuth.email" type="text" #email ></ion-input>
             </ion-item>
             &nbsp;
             <ion-item>
-              <ion-icon color="medium" slot="start" name="key-outline"></ion-icon>
-              <ion-label color="medium" position="floating"> Senha </ion-label>
+              <ion-icon class="colorMedium" slot="start" name="key-outline"></ion-icon>
+              <ion-label class="colorMedium" position="floating"> Senha </ion-label>
               <ion-input [(ngModel)]="userAuth.password" type="password" #password></ion-input>
             </ion-item>
             <h6 ion-button clear class="btnReset" (click)="handleResetPass()"> Esqueceu a senha? <b> Clique aqui. </b> </h6>
             &nbsp;
-            <ion-button ion-button expand="block" class="btnLogin" (click)="handleLogin()" (ionBlur)="blurBtn()"> Entrar </ion-button>
+            <ion-button ion-button expand="block" class="btnLogin" (click)="handleLoginService()" (ionBlur)="blurBtn()"> Entrar </ion-button>
+            &nbsp;
+            <ion-button ion-button expand="block" color="light" (click)="handleNewUserService()" (ionBlur)="blurBtn()"> Criar conta </ion-button>
           </div>
         </ion-col>
 
           <!-- Coluna da imagem -->
-          <ion-col size="6" class="sideColLogin">
+          <ion-col class="sideColLogin">
             <!--<h1> Juntos nos motivamos </h1>-->
             <ion-img class="imageSize" src="../../../assets/images/imageSignup.jpg"></ion-img>
         </ion-col>
@@ -60,27 +56,27 @@
     <ion-slide>
       <ion-grid>
         <ion-row>
-          <ion-col size="6" class="sideColLogin">
+          <ion-col class="sideColLogin">
             <p> &nbsp; </p>
             <ion-img src="../../../assets/images/imageLogin.jpg"></ion-img>
           </ion-col>
-          <ion-col size="6" class="sideFormLoginCreate">
+          <ion-col class="sideFormLoginCreate">
             <div class="formAreaCreate"> 
               <h1 class="subtitleText"> Cadastre seu estabelecimento, é rápido e fácil.</h1>
-              <h4 class="descSubtitleText"> Encontre onde seu público está. </h4>
+              <h4 class="descSubtitleText"> Insira seus dados pessoais. </h4>
 
               <form [formGroup]="formCriarConta" (ngSubmit)="newUserEstab()">
                 <ion-item Lines="none">
-                  <ion-icon color="medium" slot="start" name="person-outline"></ion-icon>
-                  <ion-label color="medium" position="floating"> Nome </ion-label>
-                  <ion-input [(ngModel)]="newUserAuth.nome" type="text" #nomeCriar color="medium" formControlName="nome" >  </ion-input>
+                  <ion-icon class="colorMedium" slot="start" name="person-outline"></ion-icon>
+                  <ion-label class="colorMedium" position="floating"> Nome </ion-label>
+                  <ion-input [(ngModel)]="newUserAuth.nome" type="text" #nomeCriar class="colorMedium" formControlName="nome" >  </ion-input>
                 </ion-item>
                 <!-- Validação do campo Nome -->
 
                 <ion-item Lines="none">
-                  <ion-icon color="medium" slot="start" name="at-outline"></ion-icon>
-                  <ion-label color="medium" position="floating"> E-mail </ion-label>
-                  <ion-input [(ngModel)]="newUserAuth.email" type="email" #emailCriar color="medium" formControlName="email" >  </ion-input>
+                  <ion-icon class="colorMedium" slot="start" name="at-outline"></ion-icon>
+                  <ion-label class="colorMedium" position="floating"> E-mail </ion-label>
+                  <ion-input [(ngModel)]="newUserAuth.email" type="email" #emailCriar class="colorMedium" formControlName="email" >  </ion-input>
                 </ion-item>
                 <!-- Validação do campo E-mail -->
                 <div *ngIf="formCriarConta.controls.email.errors" class="areaValidator">
@@ -89,9 +85,9 @@
                 </div>
 
                 <ion-item Lines="none">
-                  <ion-icon color="medium" slot="start" name="phone-portrait-outline"></ion-icon>
-                  <ion-label color="medium" position="floating"> Celular (DD) 00000-0000 </ion-label>
-                  <ion-input [(ngModel)]="newUserAuth.celular" type="cell" #cellCriar color="medium" formControlName="celular" (ionBlur)="blurCell()">  </ion-input>
+                  <ion-icon class="colorMedium" slot="start" name="phone-portrait-outline"></ion-icon>
+                  <ion-label class="colorMedium" position="floating"> Celular (DD) 00000-0000 </ion-label>
+                  <ion-input [(ngModel)]="newUserAuth.celular" type="cell" #cellCriar class="colorMedium" formControlName="celular" (ionBlur)="blurCell()">  </ion-input>
                 </ion-item>
                 <!-- Validação do campo Celular -->
                 <div *ngIf="formCriarConta.controls.celular.errors" class="areaValidator">
