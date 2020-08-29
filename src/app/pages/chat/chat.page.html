@@ -1,0 +1,175 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Chat</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="backgroundColor" >
+  
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <div class="headerColChat">
+            <ion-row>
+              <ion-col>
+                <h4> 
+                  <ion-icon name="people-outline"></ion-icon>
+                  &nbsp; Contatos 
+                </h4>
+
+              </ion-col>
+            </ion-row>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="auto">
+          <ion-list>
+            <ion-item>
+              <ion-searchbar showCancelButton="focus" color="light" cancelButtonText="Custom Cancel"></ion-searchbar>
+            </ion-item>
+            <div >
+              <div class="chatsArea">
+                <ion-content class="areaChats">
+                  <ion-scroll>
+                    <ion-item class="itemListChats" color="light" *ngFor="let userChat of chatUsers let i = index" (click)="startChat(userChat, i)">
+                      
+                        <div class="itemSelected" *ngIf="i == indexSelected" > </div>
+                          
+                        
+                          <ion-avatar slot="start">
+                            <img src="{{ userChat.img_url }}" />
+                          </ion-avatar>
+                        
+
+
+                      
+                      
+                      
+                      <ion-grid>
+                            <ion-col  class="nameChatUser">
+                              <ion-row >
+                                <ion-title> <b> {{ userChat.nome }} </b> &nbsp; {{i}} </ion-title> 
+                              </ion-row>
+                              <ion-row>
+                                <ion-title> {{ userChat.desc }} </ion-title>
+                              </ion-row>
+                            </ion-col>
+
+                      
+                        
+                          
+                          
+                          
+                          </ion-grid>
+                      </ion-item>
+                    </ion-scroll>
+                </ion-content>
+              </div>
+            </div> 
+          </ion-list>
+        </ion-col>
+  
+        <ion-col size="auto" class="contentTextArea">
+          <div class="textArea">
+            <ion-item-divider>
+              <ion-label> &nbsp; Interações do chat aqui </ion-label>
+            </ion-item-divider>
+            <footer class="footer">
+          
+              <ion-item lines="full" class="inputTextChat">
+                
+            
+                <ion-input type="text"  placeholder="Digite uma mensagem">
+                </ion-input>
+                    <ion-buttons slot="end">
+                      <ion-button>
+                        <ion-icon slot="icon-only" color="primary" name="send"></ion-icon>
+                      </ion-button>
+                    </ion-buttons>
+                
+              </ion-item>
+              
+            </footer>
+            
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+        
+</ion-content>
+
+
+
+
+
+
+<!--
+
+<ion-grid>
+    <ion-row>
+      Chats 
+      <ion-col size="3" class="colChatsPerson"> 
+        <div class="headerColChat">
+          <ion-row>
+            <h1> 
+              <ion-icon name="people-outline"></ion-icon>
+              &nbsp; Contatos 
+            </h1>
+          </ion-row>
+          <ion-row>
+            <p> 123 Conversas </p>
+          </ion-row>
+        </div>
+
+         Animated Searchbar 
+        <ion-searchbar animated placeholder="Pesquisar contato" color="white"></ion-searchbar>
+        <ion-scroll>
+          
+            <div class="areaScroll">
+              <ion-list>
+                <ion-item *ngFor="let i of chatUsers">
+                  <ion-avatar slot="start">
+                    <img src="{{ i.img_url }}" />
+                  </ion-avatar>
+                  <ion-grid>
+                    <ion-col size="8" class="nameChatUser">
+                      <ion-row >
+                        <ion-title> <b> {{ i.nome }} </b> </ion-title> 
+                      </ion-row>
+                      <ion-row>
+                        <ion-title> {{ i.desc }} </ion-title>
+                      </ion-row>
+                    </ion-col>
+                    
+                  </ion-grid>
+  
+                </ion-item>
+              </ion-list>
+           </div>
+
+          
+        </ion-scroll>
+      </ion-col>
+  
+      Text Area 
+      <ion-col size="6">
+        <div class="textArea">
+          <h1> Interações do chat aqui </h1>
+        </div>
+      </ion-col>
+  
+      User informations 
+      <ion-col size="3">
+        <h3> User informations </h3>
+      </ion-col>
+
+    </ion-row>
+
+
+  </ion-grid>
+
+
+
+-->

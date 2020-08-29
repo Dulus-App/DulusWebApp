@@ -23,6 +23,8 @@ export class AuthGuardGuard implements CanActivate {
           if (user) {
             // Usuário logado - Seguir normalmente
             resolve(true);
+            console.log("Passou no Guard");
+            
           } else {
             // Usuário não logado - Redirecionar para paginaa de login
             this.router.navigate(['/auth']);
@@ -30,17 +32,5 @@ export class AuthGuardGuard implements CanActivate {
           }
         });
       }); 
-
-
-
-   /*   this.afAuth.auth.onAuthStateChanged((user: firebase.User) => {
-        if(user) {
-          
-        }
-      })
-      
-      */
-    // return true;
     }
-  
 }

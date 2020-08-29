@@ -1,0 +1,363 @@
+
+<ion-content>
+  <ion-row>
+    <ion-col size="3">
+
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="8">
+
+      <ion-card class="cardNameDesc">
+        <ion-card-header>
+          <ion-row>
+            <ion-col>
+              <!--<div class="tagNew" *ngIf="isNewService">
+                <p>Editar</p>
+              </div>
+              <div class="tagNew" *ngIf="!isNewService">
+                <p>Novo</p>
+              </div>-->
+            </ion-col>
+            <ion-col>
+             
+            </ion-col>
+            
+          </ion-row>
+        </ion-card-header>
+  
+        <!-- Card de atualização dos dados de Nome e descrição do perfil do estabelecimento -->
+        <ion-card-content>
+          <ion-row>
+           
+            <!--<ion-button ion-button color="secondary" (click)="getServices()"> Novo serviço </ion-button>-->
+          </ion-row>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                
+                  <ion-label position="stacked" color="medium" > Título </ion-label>
+                  <ion-input type="text" [(ngModel)]="newService.nomeServico" [disabled]="!openFields"></ion-input>
+                
+              </ion-col>
+              <ion-col>
+                
+                  <ion-label position="stacked" color="medium" > Descrição </ion-label>
+                  <ion-input type="text" [(ngModel)]="newService.descServico" [disabled]="!openFields"></ion-input>
+                
+              </ion-col>
+              
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                
+                  <ion-label position="stacked" color="medium" > Valor </ion-label>
+                  <ion-input type="text" [(ngModel)]="newService.valorServico" [disabled]="!openFields"></ion-input>
+                
+              </ion-col>
+              <ion-col>
+                
+                  <ion-label position="stacked" color="medium" > Período </ion-label>
+                  <ion-input type="text" [(ngModel)]="newService.periodo" [disabled]="!openFields"></ion-input>
+                
+              </ion-col>
+            </ion-row>
+           <ion-row>
+             &nbsp;
+           </ion-row>
+            
+              <h3> Links relacionados </h3>
+          
+            <ion-row>
+              <ion-col>
+                <ion-row>
+                  <ion-checkbox color="primary" [(ngModel)]="newService.postagens" checked="newService.postagens" [disabled]="!openFields" (ionChange)="showPostagens()"></ion-checkbox>
+                  <ion-label> &nbsp; Postagens </ion-label>
+                </ion-row>
+
+                <!-- Exibe se checkbox marcado -->
+                <ion-row *ngIf="newService.postagens">
+                  <p> escolher postagen </p>
+                </ion-row>
+
+              </ion-col>
+
+              <ion-col>
+                <ion-row>
+                  <ion-checkbox color="secondary" [(ngModel)]="newService.albuns" [checked]="newService.albuns" [disabled]="!openFields" (ionChange)="showAlbum()"></ion-checkbox>
+                  <ion-label> &nbsp; Álbum </ion-label>
+                </ion-row>
+
+                <ion-row *ngIf="newService.albuns">
+                  <p> escolher album </p>
+                </ion-row>
+              </ion-col>
+
+              <ion-col>
+                <ion-row>
+                  <ion-checkbox color="danger" [(ngModel)]="newService.canal" [checked]="newService.canal" [disabled]="!openFields" (ionChange)="showCanal()"></ion-checkbox>
+                  <ion-label> &nbsp; Canal </ion-label>
+                </ion-row>
+
+                <ion-row *ngIf="newService.canal">
+                  <p> escolher canal </p>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+            
+            <ion-row>
+              &nbsp;
+            </ion-row>
+
+            <ion-row>
+              <ion-col *ngIf="!isNewService">
+                <ion-row *ngIf="!isEditService">
+                  <ion-button ion-button color="secondary" (click)="novoServico()">
+                    Novo
+                  </ion-button>
+              
+                  
+                  <ion-title *ngIf="isEditService"> <span> Ou </span> <b> Cadastre seus serviços aqui </b> </ion-title>
+                  <ion-title *ngIf="!isEditService"> <span> Ou </span> <b> Escolha um item com o botão 
+                    <ion-icon name="create-outline"></ion-icon>
+                    na pré visualização para editar </b> </ion-title>
+                
+
+                </ion-row>
+              </ion-col>
+            </ion-row>
+              
+
+              <div *ngIf="isNewService">
+                <ion-col *ngIf="isNewService">
+                  <ion-button ion-button color="light" (click)="cancelarNovoServico()">
+                    Cancelar
+                  </ion-button>
+                </ion-col>
+                <ion-col *ngIf="isNewService">
+                  <ion-button ion-button color="secondary" (click)="saveNewService()">
+                    Salvar
+                  </ion-button>
+                </ion-col>
+              </div>
+
+              <div *ngIf="isEditService">
+                <ion-col *ngIf="isEditService">
+                  <ion-button ion-button color="light" (click)="cancelarNovoServico()">
+                    Cancelar
+                  </ion-button>
+                </ion-col>
+                <ion-col *ngIf="isEditService">
+                  <ion-button ion-button color="secondary" (click)="saveNewService()">
+                    Salvar
+                  </ion-button>
+                </ion-col>
+              </div>
+              
+           
+
+          </ion-grid>
+
+        
+            
+        
+
+        </ion-card-content>
+      </ion-card>
+    
+
+    </ion-col>
+
+
+    <!-- Area Cel -->    
+    <ion-col size="4" class="cellCollumn">
+  
+      <!-- Primeira tela -->
+      <div  class="cellArea">
+       <div class="cell">
+         <!-- Navigation -->
+         <div class="cellHeader">
+           <ion-grid>
+             <ion-row>
+               <ion-col>
+                 <!-- Icon Back -->
+                 <ion-icon class="iconHeader" name="arrow-back-outline"></ion-icon>
+               </ion-col>
+               <ion-col class="textHeader">
+                <!--<p > nome da pagina </p>-->
+               </ion-col>
+             </ion-row>
+           </ion-grid>
+        </div>
+         <ion-content>
+           <ion-scroll>
+             <ion-list>
+
+              <!-- Pré visualização -->
+              <ion-card *ngIf="isNewService" class="cardServicos">
+                <ion-card-header>  
+                  <ion-title> {{newService.nomeServico}} </ion-title>
+                </ion-card-header>
+                <ion-card-content>
+        
+                  <ion-grid>
+                    <ion-row>
+                      {{newService.descServico}}
+                    </ion-row>
+                    <ion-row>
+                      {{ newService.valorServico }}
+                    </ion-row>
+                    <ion-row>
+                      {{ newService.periodo }}
+                    </ion-row>
+                  </ion-grid>
+                  
+                    <ion-toolbar color="white">
+                      <ion-buttons slot="start">
+                        
+                        <div *ngIf="isCheckedPostagens">
+                          <ion-button>
+                            <ion-icon slot="icon-only" name="newspaper-outline"></ion-icon>
+                          </ion-button>
+                        </div>
+
+                        <div *ngIf="isCheckedAlbuns">
+                          <ion-button>
+                            <ion-icon slot="icon-only" name="images-outline"></ion-icon>
+                          </ion-button>
+                        </div>
+
+                        <div *ngIf="isCheckedCanal">
+                          <ion-button>
+                            <ion-icon slot="icon-only" name="mic-outline"></ion-icon>
+                          </ion-button>
+                        </div>
+
+                      </ion-buttons>
+                    </ion-toolbar>
+
+                  
+                </ion-card-content>
+           
+              </ion-card>
+
+
+               <!-- Skeleton screen -->
+               <div *ngIf="!myServ.length != 0">
+                 <ion-list>
+                   <ion-card class="cardServicos" *ngFor="let skeleton of [1,2,3]">
+                     <ion-card-header>
+                       <ion-skeleton-text animated style="width: 40%"></ion-skeleton-text>
+                     </ion-card-header>
+                     <ion-card-content>
+                       <ion-skeleton-text animated style="width: 90%"></ion-skeleton-text>
+                       <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+                       <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+                     </ion-card-content>
+                     <ion-card-footer>
+                       <ion-toolbar color="white">
+                         <ion-buttons slot="end">
+                           <ion-button>
+                            <h1>
+                              <ion-skeleton-text animated></ion-skeleton-text>
+                            </h1>
+                           </ion-button>
+                           <ion-button>
+                            <h1>
+                              <ion-skeleton-text animated></ion-skeleton-text>
+                            </h1>
+                           </ion-button>
+                         </ion-buttons>
+
+                       </ion-toolbar>
+                     </ion-card-footer>
+                   </ion-card>
+                   
+                 </ion-list>
+               </div>
+
+               <!-- Dados carregados -->
+               <div *ngIf="!isNewService">
+                 <ion-card  class="cardServicos" *ngFor="let i of myServ">
+                   <ion-card-header>  
+                     <ion-title> <b> {{i.nomeServico}} </b>  </ion-title>
+                   </ion-card-header>
+                   <ion-card-content>
+                     <ion-grid>
+                       <ion-row>
+                        Descrição:  {{i.descServico}}
+                       </ion-row>
+                       <ion-row>
+                        Valor: {{ i.valorServico }}
+                       </ion-row>
+                       <ion-row>
+                        Período: {{ i.periodo }}
+                       </ion-row>
+                     </ion-grid>
+                   </ion-card-content>
+                   <ion-card-footer>
+                    
+                    <!-- Links relacionados -->
+                    <ion-toolbar color="white">
+                      <ion-buttons slot="start">
+                          
+                        <div *ngIf="i.postagens">
+                          <ion-button>
+                            <ion-icon slot="icon-only" name="newspaper-outline"></ion-icon>
+                          </ion-button>
+                        </div>
+  
+                        <div *ngIf="i.albuns">
+                          <ion-button>
+                            <ion-icon slot="icon-only" name="images-outline"></ion-icon>
+                          </ion-button>
+                        </div>
+  
+                        <div *ngIf="i.canal">
+                          <ion-button>
+                            <ion-icon slot="icon-only" name="mic-outline"></ion-icon>
+                          </ion-button>
+                        </div>
+  
+                      </ion-buttons>
+                    </ion-toolbar> 
+  
+                    <!-- Controle de edição e exclusão do card  -->
+                    <ion-toolbar color="white">
+                      <ion-buttons slot="end">
+                        <ion-button (click)="editService(i.key)">
+                          <ion-icon slot="icon-only" class="iconCardService" color="medium" name="create-outline"></ion-icon>
+                        </ion-button>
+                        <ion-button (click)="deleteService(i.key)">
+                          <ion-icon slot="icon-only" class="iconCardService" color="danger" name="trash-outline"></ion-icon>
+                        </ion-button>
+                      </ion-buttons>
+  
+                    </ion-toolbar>
+                         
+                       
+                       
+                         
+                       
+                     
+                   </ion-card-footer>
+                 </ion-card>
+
+               </div>
+              </ion-list>
+            </ion-scroll>
+            <ion-row *ngFor="let space of [1,2,3,4,5,6]">
+              &nbsp;
+            </ion-row>
+            
+           
+         </ion-content>
+       </div>
+      </div>
+    </ion-col>
+
+  </ion-row>
+
+
+</ion-content>

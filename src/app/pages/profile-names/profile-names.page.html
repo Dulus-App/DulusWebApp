@@ -1,0 +1,207 @@
+<ion-content>
+  <ion-row>
+    &nbsp;
+  </ion-row>
+  <ion-row>
+    <ion-col size="8">
+      
+      <ion-card class="cardNameDesc">
+        <ion-card-header>
+          <ion-title> Dados do seu estabelecimento </ion-title>
+        </ion-card-header>
+  
+        <!-- Card de atualização dos dados de Nome e descrição do perfil do estabelecimento -->
+        <ion-card-content>
+
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-label position="stacked" color="medium" > Escolha aqui sua imagem de capa </ion-label>
+                <ion-input id='selecao-arquivo' class="inputImage" ion-button [disabled]="!editField" type="file" accept="image/*" (change)="uploadFile($event.target.files)"></ion-input>
+              </ion-col>
+              <ion-col>
+                <ion-item lines="none">
+                  <ion-label position="stacked" color="medium"> Nome do seu estabelecimento </ion-label>
+                  <ion-input [(ngModel)]="estabData.nomeEstab" [disabled]="!editField" type="text"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+
+                <ion-item lines="none">
+                  <ion-label position="stacked" color="medium" > Descrição breve </ion-label>
+                  <ion-input [(ngModel)]="estabData.descEstab" [disabled]="!editField" type="text"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-item lines="none">
+                  <ion-label color="medium" position="stacked">Telefone</ion-label>
+                  <!--<ion-icon color="medium" slot="start" name="call-outline"></ion-icon>-->
+                  <ion-input [(ngModel)]="estabData.telefone" [disabled]="!editField" type="numeric" autocomplete="on" mask="(__) _____-____"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-item lines="none">
+                  <!--<ion-icon color="medium" slot="start" name="call-outline"></ion-icon>-->
+                  <ion-label color="medium" position="stacked">Telefone 2</ion-label>
+                  <ion-input [(ngModel)]="estabData.telefone2" [disabled]="!editField" type="numeric"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-item lines="none">
+                  <!--<ion-icon color="medium" slot="start" name="map-outline"></ion-icon>-->
+                  <ion-label color="medium" position="stacked">CEP</ion-label>
+                  <ion-input [(ngModel)]="estabData.cep" [disabled]="!editField" type="numeric" (ionBlur)="getCEP()"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-item lines="none">
+                  <!--<ion-icon color="medium" slot="start" name="map-outline"></ion-icon>-->
+                  <ion-label color="medium" position="stacked">Cidade</ion-label>
+                  <ion-input [(ngModel)]="estabData.cidade" [disabled]="!editField" type="text"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-item lines="none">
+                  <!--<ion-icon color="medium" slot="start" name="map-outline"></ion-icon>-->
+                  <ion-label color="medium" position="stacked">Bairro</ion-label>
+                  <ion-input [(ngModel)]="estabData.bairro" [disabled]="!editField" type="text"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="10">
+                <ion-item lines="none">
+                  <!--<ion-icon color="medium" slot="start" name="map-outline"></ion-icon>-->
+                  <ion-label color="medium" position="stacked">Rua</ion-label>
+                  <ion-input [(ngModel)]="estabData.rua" [disabled]="!editField" type="text"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col size="2">
+                <ion-item lines="none">
+                  <!--<ion-icon color="medium" slot="start" name="map-outline"></ion-icon>-->
+                  <ion-label color="medium" position="stacked">Numero</ion-label>
+                  <ion-input [(ngModel)]="estabData.numero" [disabled]="!editField" type="numeric"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="textoInfoImg">
+                <ion-button class="cancelBtn" ion-button color="light" (click)="editarCampos()">
+                  <ion-icon *ngIf="!editField" slot="start" name="create-outline"></ion-icon>
+                  &nbsp; <span *ngIf="!editField"> Editar </span>
+                  <ion-icon *ngIf="editField" slot="start" name="close-outline"></ion-icon>
+                  &nbsp; <span *ngIf="editField"> Cancelar </span>
+                </ion-button>
+              </ion-col>
+              <ion-col class="textoInfoImg">
+                <ion-button *ngIf="editField" button color="secondary" (click)="atualizarDados()"> 
+                  <ion-icon slot="start" name="save-outline"></ion-icon>
+                  &nbsp; Atualizar
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+      
+  
+  
+    </ion-col>
+  
+    <!-- Area Cel -->    
+    <ion-col size="4" class="cellCollumn">
+  
+      <!-- Primeira tela -->
+      <div  class="cellArea">
+       <div class="cell">
+         <!-- Navigation -->
+         <div class="cellHeader">
+           <!-- Icon Back -->
+           <ion-icon class="iconHeader" name="arrow-back-outline"></ion-icon>
+         </div>
+         <!-- Imagem do prfil -->
+         <div *ngIf="this.urlImage" class="cellImage">
+           <ion-img class="imageEstab" src="{{this.urlImage}}"></ion-img>
+         </div>
+         <div *ngIf="!this.urlImage" class="cellImageNull">
+          <ion-grid>
+            <ion-row class="textoInfoImg">
+              <h3> Imagem de capa </h3>
+            </ion-row>
+            <ion-row class="textoInfoImg">
+              <p> Tamanho sugerido 500px por 400px </p>
+            </ion-row>
+          </ion-grid>
+         </div>
+         <div class="detalhe">
+           <ion-row>
+             <ion-col size-md="12">
+               <ion-icon class="iconPush" name="remove-outline"></ion-icon>
+             </ion-col>
+           </ion-row>
+           </div>
+           <!-- Classificação do estabelecimento. -->
+           <div class="classificacao">
+               <ion-icon class="iconStar" name="star-outline"></ion-icon>
+           </div>
+         <!-- Nome do estabelecimento -->
+         <div class="nomeEstab">
+             <ion-row class="justify-content-center" size-md="12">
+               <h1><b> {{estabData.nomeEstab}}  </b></h1>
+             </ion-row>
+         </div>
+         <div class="descEstab">
+           <ion-row size-md="12">
+             <p> {{estabData.descEstab}} </p>
+           </ion-row> 
+         </div>
+  
+         <!-- Numeros  -->
+         <div class="numeros">
+           
+             <ion-col > 100 </ion-col>
+             <ion-col > 
+                <ion-badge (click)="getLocation()">
+                  A 2 km
+                </ion-badge> 
+              </ion-col>
+             <ion-col > 200 </ion-col>
+           
+         </div>
+         <!-- Identificadores  -->
+         <div class="numeros">
+            <ion-col size="4" class="justify-content-space-between"> Seguidores </ion-col>
+            <ion-col size="4" class="justify-content-space-between"> &nbsp; </ion-col>
+            <ion-col size="4" class="justify-content-space-between"> Curtidas </ion-col>  
+         </div>
+         <ion-row>
+           &nbsp;
+         </ion-row>
+         
+         <div class="actionProfile">
+           <ion-col>
+            <ion-icon class="iconProfile" name="chatbubbles-outline"></ion-icon>
+           </ion-col>
+           <ion-col>
+            <ion-icon class="iconProfile" name="tv-outline"></ion-icon>
+          </ion-col>
+          <ion-col>
+            <ion-icon class="iconProfile" name="tv-outline"></ion-icon>
+           </ion-col>
+         </div>
+         
+
+       </div>
+     </div>
+
+    </ion-col>
+
+  </ion-row>  
+
+
+
+</ion-content>

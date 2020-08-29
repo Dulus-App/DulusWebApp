@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-dashboard',
@@ -27,16 +28,22 @@ export class DashboardPage implements OnInit {
   public user_displayName: any; 
   public user_email: any;
 
+  platforms: Array<string>;
 
   constructor(
+              public platform:    Platform,
               public menuCtrl:    MenuController,
               private route:      ActivatedRoute, 
               private router:     Router,
               public afAuth:      AngularFireAuth,
               public userService: AuthServiceService,
               public popoverCtrl: PopoverController) {
-    console.log("passou no construtor");
+    
     this.reloadData();
+
+    
+    this.platforms = platform.platforms();
+
   }
 
   ionViewWillEnter() {
@@ -45,6 +52,7 @@ export class DashboardPage implements OnInit {
     // Habilita a exibição do sidemenu.
     this.menuCtrl.enable(true);
    
+    
     
 
 

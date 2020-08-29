@@ -140,10 +140,12 @@
   <ion-grid> 
     <ion-row>
       <ion-col size="6">
-        <ion-card>
+        <ion-card *ngFor="let platform of platforms">
           <ion-card-title> Titulo do card </ion-card-title>
           <ion-card-content>
-
+            <div>
+              Platforms: <span >{{platform }}</span>
+          </div>
           </ion-card-content>
         </ion-card>
       </ion-col>

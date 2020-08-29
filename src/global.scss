@@ -41,3 +41,32 @@
   .backgroundColor {
     --ion-background-color: #f3f5f7;
 }
+
+// Buttons
+
+.btnSave {
+  //--ion-background-color: #8F1CB8;
+  color: #fff;
+  border-radius: 20px;
+
+}
+
+.my-custom-class{
+  --background:#3EB8AB;
+  --border-color: #3EB8AB;
+  --border-radius:10px;
+  --border-style:solid;
+  --border-width:2px;
+  --button-color:#fff;
+  --color:#fff;
+}
+
+.my-custom-class_erro{
+  --background:#ed576b;
+  --border-color: #ed576b;
+  --border-radius:10px;
+  --border-style:solid;
+  --border-width:2px;
+  --button-color:#fff;
+  --color:#fff;
+}

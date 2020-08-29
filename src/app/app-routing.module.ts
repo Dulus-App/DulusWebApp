@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuardGuard } from './services/guards/auth-guard.guard';
+import { DeactivatePageGuard } from './services/guards/deactivate-page.guard';
 
 const routes: Routes = [
   {
@@ -19,7 +20,8 @@ const routes: Routes = [
   },
   {
     path: 'auth',
-    loadChildren: () => import('./pages/auth/auth.module').then( m => m.AuthPageModule)
+    loadChildren: () => import('./pages/auth/auth.module').then( m => m.AuthPageModule),
+    
   },
   {
     path: 'reset',
@@ -33,6 +35,7 @@ const routes: Routes = [
     path: 'profile',
     loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule),
     canActivate: [AuthGuardGuard],
+    
   },
   {
     path: 'posts',
@@ -42,6 +45,32 @@ const routes: Routes = [
   {
     path: 'criar-conta',
     loadChildren: () => import('./pages/criar-conta/criar-conta.module').then( m => m.CriarContaPageModule)
+  },
+  {
+    path: 'profile-names',
+    loadChildren: () => import('./pages/profile-names/profile-names.module').then( m => m.ProfileNamesPageModule)
+  },
+  {
+    path: 'profile-servicos',
+    loadChildren: () => import('./pages/profile-servicos/profile-servicos.module').then( m => m.ProfileServicosPageModule),
+    canDeactivate: [DeactivatePageGuard]
+  },
+  {
+    path: 'galeria',
+    loadChildren: () => import('./pages/galeria/galeria.module').then( m => m.GaleriaPageModule),
+
+  },
+  {
+    path: 'chat',
+    loadChildren: () => import('./pages/chat/chat.module').then( m => m.ChatPageModule)
+  },
+  {
+    path: 'canais',
+    loadChildren: () => import('./pages/canais/canais.module').then( m => m.CanaisPageModule)
+  },
+  {
+    path: 'upload-images',
+    loadChildren: () => import('./pages/upload-images/upload-images.module').then( m => m.UploadImagesPageModule)
   }
 ];
 

@@ -79,4 +79,85 @@ export class AlertService {
     return this.retorno;
   }
 
+
+
+  // Exibe alerta com botões de opção para prosseguir
+  async showAlertWithMessageAndButtonAtLeavePage(header, subheader, message) {
+    
+    
+    const alertBtn = await this.alertController.create({
+      header: header,
+      subHeader: subheader,
+      message: message,
+      buttons: [
+        {
+          text: 'NÃO',
+          role: 'cancel',
+          cssClass: 'danger',
+          handler: (blah) => {
+            
+             // this.retorno = 'cancel';
+          }
+        }, {
+          text: 'SIM',
+          role: 'ok',
+          handler: (ok) => {
+            
+           // this.retorno = 'ok';
+          }
+        }
+      ]
+    });
+
+    await alertBtn.present();
+    // Retornando o valor escolhido.
+    await alertBtn.onDidDismiss().then((data) => {
+      this.retorno = data.role;
+    });
+    
+    return this.retorno;
+  }
+
+
+  // Exibe alerta com botões de opção para prosseguir
+  async showAlertLeavePage(header, subheader, message) {
+    
+    
+    const alertBtn = await this.alertController.create({
+      header: header,
+      subHeader: subheader,
+      message: message,
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'false',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            
+             // this.retorno = 'cancel';
+          }
+        }, {
+          text: 'SIM',
+          role: 'true',
+          handler: (ok) => {
+            
+           // this.retorno = 'ok';
+          }
+        }
+      ]
+    });
+
+    await alertBtn.present();
+    // Retornando o valor escolhido.
+    await alertBtn.onDidDismiss().then((data) => {
+      this.retorno = data.role;
+    });
+    console.log("retorno do alert service: ", this.retorno);
+    
+    return this.retorno;
+  }
+
+
+
+
 }

@@ -23,10 +23,27 @@ export class AppComponent implements OnInit {
       icon: 'person'
     },
     {
-      title: 'posts',
+      title: 'Galeria',
+      url: 'galeria',
+      icon: 'images'
+    },
+    {
+      title: 'Posts',
       url: 'posts',
       icon: 'paper-plane'
     }
+    ,
+    {
+      title: 'Chat',
+      url: 'chat',
+      icon: 'chatbubbles'
+    },
+    {
+      title: 'Canais',
+      url: 'canais',
+      icon: 'desktop'
+    }
+    
     
     /*,
     {

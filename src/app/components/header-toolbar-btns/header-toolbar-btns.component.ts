@@ -24,7 +24,7 @@ export class HeaderToolbarBtnsComponent implements OnInit {
     // Load image
     let userData = this.userService.currentUserAuth;
     this.imgProfile = userData.imgProfileUrl;
-    this.imgProfile = "https://firebasestorage.googleapis.com/v0/b/ludus-25201.appspot.com/o/padrao_male.png?alt=media&token=6c60e38b-e891-47a8-9c81-086fc22eb310";
+    this.imgProfile = "https://firebasestorage.googleapis.com/v0/b/dulus-82cfb.appspot.com/o/estabelecimentos%2Fpadrao_male.png?alt=media&token=c73e409b-c616-4b15-84e9-a6590414d79e";
   }
 
   // Exibe Popover do menu

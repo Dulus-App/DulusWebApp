@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MenuController, IonSlides, NavController, ModalController } from '@ionic/angular';
+import { MenuController, IonSlides, NavController, ModalController, LoadingController } from '@ionic/angular';
 
 // Services
 import { LoadingService } from '../../services/loading/loading.service';
@@ -69,7 +69,7 @@ export class AuthPage implements OnInit {
               public  loadingCtrl: LoadingService,
               private storage:     Storage,
               private router:      Router,
-              public userService:  AuthServiceService,
+              public  userService: AuthServiceService,
               public  fAuth:       AngularFireAuth) { 
 
 
@@ -83,11 +83,23 @@ export class AuthPage implements OnInit {
   }
 
   ionViewWillEnter() {
-
+    this.menuCtrl.enable(false);
 
     
   }
   
+  ionViewDidEnter() {
+    this.storage.get('uid').then((data => {
+      if(data) {
+        this.navCtrl.navigateRoot('dashboard');
+      }
+      else {
+        // Não há usuário logado
+      }
+      console.log(data);
+    }))
+  }
+
   ngOnInit() {
     // Desabilita a exibição do sidemenu.
     this.menuCtrl.enable(false);
@@ -153,12 +165,12 @@ export class AuthPage implements OnInit {
 
  async handleLoginService() {
 
-    // Show Loading
+   // Show Loading
     this.loadingCtrl.presentLoadingDefault();
-
+   
    await this.userService.loginFirebase(this.userAuth.email, this.userAuth.password)
-      .then((data) => {
-
+   .then((data) => {
+     
         // Criar sessão do usuário
         firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
           .then(() => {
@@ -176,12 +188,8 @@ export class AuthPage implements OnInit {
 
         // Após autenticação envia rota para o Dashboard
         this.navCtrl.navigateRoot(['dashboard'], navExtrasAuth);
-      }, (error) => {
-        
-        // Dismiss Loading
-       // this.loadingCtrl.presentLoadingDefault();
-       this.loadingCtrl.dismissLoading();
-
+      }, (error) => {      
+       
         // Trata mensagem de erro em portugues
         let messageError: string;
 
@@ -196,6 +204,9 @@ export class AuthPage implements OnInit {
             messageError = "Email com formato errado. Por favor verifique";
             break;
         }
+
+        // Dismiss Loading
+        this.loadingCtrl.dismissLoading();
 
         console.log(error);
         // Apresenta mensagem de erro no Alert

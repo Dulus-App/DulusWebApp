@@ -1,0 +1,321 @@
+
+ion-label {
+  ion-icon {
+    display: inline-block;
+    justify-content: space-between;
+  }
+  // background-color: #ffff;
+}
+
+ion-grid ion-row {
+  margin-top: 1rem;
+}
+
+ion-item {
+  background-color: #ffff;
+}
+
+ion-col ion-item {
+  margin-top: 0.7rem;
+}
+
+.colorWhite {
+  background-color: #ffff;
+}
+
+.colorInput {
+  background-color: gray;
+}
+
+ion-input{
+  border-radius: 10px;
+  border: 1px solid rgb(201, 198, 198);
+  margin-top: 6.2px;
+  
+  //background-color: rgb(201, 198, 198);
+}
+.inputColor{
+  border-radius: 10px;
+  border: 1px solid #f4f5f8;
+  margin-top: 8px;
+  
+  background-color: #f4f5f8;
+}
+
+
+ion-card-footer {
+  margin-bottom: 0px;
+  align-items: end;
+}
+
+.contentRight {
+  justify-content: right;
+}
+
+.contentLeft {
+  justify-content: left;
+}
+
+.contentCenter {
+  display: flex;
+  justify-content: center;  
+  align-items: center;
+}
+
+.contentCenter, .sizeIconImages, .sizeLabel {
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.8rem;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.textInformation {
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: center;
+}
+
+.iconInputImage {
+  font-size: 3.1rem;
+}
+
+.iconTrash {
+  font-size: 2.2rem;
+}
+
+.btnCarregarTodas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.areaBtnCarregarTodas {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/*.sizeIconImages {
+  font-size: 2.8rem;
+}
+
+.sizeLabel {
+  font-size: 1.8rem;
+} */
+
+
+
+.titleImgGalery {
+  margin-left: 1rem;
+  color: #9a9ca4;
+  font-size: 1.3rem;
+}
+
+
+
+.colorText {
+  color: #3EB8AB;
+}
+
+.fileInput {
+  grid-area: iconBtn;
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+  background-color: #ccc8c8;
+  
+}
+.fileInput   label {
+  color: #717171;
+  background-color: white;
+  display: inline-block;
+  cursor: pointer;
+  padding: .5em 1em;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+
+.sizeLabel:hover {
+  color: var(--ion-color-primary-shade);
+}
+
+.sizeIconImages:hover {
+  color: var(--ion-color-primary-shade);
+}
+
+
+.cardCategoria {
+    min-width: 200px;
+    max-width: 200px;
+    width: 200px;
+    height: 200px;
+    border-radius: 15px;
+    background-color: #ffff;
+}
+
+.cardCategoriaFixo {
+    min-width: 200px;
+    max-width: 200px;
+    width: 200px;
+    height: 200px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cardCategoriaNew {
+    min-width: 200px;
+    max-width: 200px;
+    width: 200px;
+    height: 200px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: #ffff;
+}
+
+.imageCardArea {
+  height: 7rem;
+  max-height: 7rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.titleCard {
+  max-width: 210px; /* Tamanho */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-left: 1rem;
+  position: relative;
+}
+
+.descriptionCard {
+  max-width: 180px; /* Tamanho */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.8rem;
+  margin-left: 1rem;
+  
+
+}
+
+.spinnerCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 7rem;
+  max-height: 7rem;
+}
+
+.albumCardImage {
+  border-radius: 20px;
+  width: 15.5rem;
+  height: 15.5rem;
+  background-color: #ffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.imageAlbumCard {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+}
+
+.btnDeleteImgAlbum {
+  display: none;
+}
+
+/*
+.imageAlbumCard:hover {
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 
+  filter: grayscale(100%);
+  
+}*/
+/*
+.imageAlbumCard:hover + ion-button, ion-button:hover {
+  display: inline-block;
+  transition: background-color 1.8s;
+}*/
+
+.imageAlbumCard:hover + ion-button, ion-button:hover{
+  display: inline-block;
+  transition: background-color 1.8s;
+}
+
+
+.btnDeleteImgAlbum:hover {
+
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+  }
+  /*
+  .btnDeleteImgAlbum:hover  ~ .imageAlbumCard {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+} */
+
+
+
+
+.areaNewAlbum {
+  width: 100%;
+  height: auto;
+  background-color: #ffff;
+}
+
+.newAlbum {
+  width: 12em;
+  height: 12em;
+  border-radius: 20px;
+}
+
+.iconNewAlbum {
+  font-size: 3em;
+}
+
+div[scrollx=true] {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    &::-webkit-scrollbar {
+       //display: none;
+    }
+     .scroll-item {
+       flex: 0 0 auto;
+    }
+  }
+
+  .toastStyle {
+    --color: #ffff;
+  }
+
+  .tutorial{
+    width: 85vw;
+    height: 65vh;
+    border: 1px solid red;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+  }

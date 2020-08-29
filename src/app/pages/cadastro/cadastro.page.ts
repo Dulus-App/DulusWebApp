@@ -364,6 +364,12 @@ export class CadastroPage implements OnInit {
   // Finalização do cadastro
   finalizarCadastro() {
 
+    // Verifica campos não obrigatórios e realiza preenchimento para não impactar na gravação do banco.
+    if(this.newUserEstab.telefone2 == null) {
+      this.newUserEstab.telefone2 = 0;
+    }
+
+
     // Atribuir data ao cadastro realizado.
     this.newUserEstab.dataCad = new Date().toISOString();
 
@@ -380,22 +386,13 @@ export class CadastroPage implements OnInit {
       });
 
       // Salvar cadastro no Cloud Firestore
-      firestore.collection("estabelecimentos")
+      firestore.collection(`estabelecimentos/${uid_currentUser}/cadastro`)
       .doc(uid_currentUser)
       .set({
         // Sobre o estabelecimento
         cnpj:        this.newUserEstab.cnpj,
         rz_social:   this.newUserEstab.rz_social,
-        nome_estab:  this.newUserEstab.nomeEstab,
-        telefone:    this.newUserEstab.telefone,
-        telefone2:   this.newUserEstab.telefone2,
-        rua:         this.newUserEstab.rua,
-        cidade:      this.newUserEstab.cidade,
-        estado:      this.newUserEstab.estado,
-        cep:         this.newUserEstab.cep,
-        numero:      this.newUserEstab.numero,
-        complemento: this.newUserEstab.complemento,
-
+        
         // Plano escolhido
         plano:       this.newUserEstab.plano,
 
@@ -414,15 +411,37 @@ export class CadastroPage implements OnInit {
       })
       .then(() => {
 
-        // Exibe mensagem de sucesso
-        this.alertCtrl.showAlertwithMessage("Sucesso", "", "Usuário cadastrado com sucesso. Entre com seu e-mail e senha.");
 
-        // Limpa campos utilizados no formulário
-        this.limparCamposCad();
-        // Redireciona para página de login
-        this.navCtrl.navigateBack('auth');
+        // ******* ATENÇÃO ******* //
+        // Verificar usabilidade   //
+        firestore.collection(`estabelecimentos/${uid_currentUser}/perfil`)
+        .doc(uid_currentUser)
+        .set({
+        // Dados salvos no Perfil
+          nomeEstab:   this.newUserEstab.nomeEstab,
+          telefone:    this.newUserEstab.telefone,
+          telefone2:   this.newUserEstab.telefone2,
+          rua:         this.newUserEstab.rua,
+          cidade:      this.newUserEstab.cidade,
+          bairro:      this.newUserEstab.bairro,
+          estado:      this.newUserEstab.estado,
+          cep:         this.newUserEstab.cep,
+          numero:      this.newUserEstab.numero,
+          complemento: this.newUserEstab.complemento,
+        }).then(() => {
 
-      })
+          // Exibe mensagem de sucesso
+          this.alertCtrl.showAlertwithMessage("Sucesso", "", "Usuário cadastrado com sucesso. Entre com seu e-mail e senha.");
+  
+          // Limpa campos utilizados no formulário
+          this.limparCamposCad();
+          // Redireciona para página de login
+          this.navCtrl.navigateBack('auth');
+
+
+        });
+
+      });
 
 
       }), (erro) => {

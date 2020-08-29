@@ -1,0 +1,214 @@
+ion-content {
+    --ion-background-color: #f3f5f7;
+}
+
+.toolbarColor {
+    --ion-background-color: #fff;
+    height: 7s0px;
+}
+
+.titleHeader {
+    font-size: 32px;
+    margin-top: 20px;
+    font-family: 'Kreon';
+}
+
+.cellArea{
+   // border: 1px solid red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.cell {
+    border: 8px solid #000;
+    border-radius: 30px;
+    width: 380px;
+    height: 720px;
+    
+}
+
+.cellHeader {
+   // border: 1px solid green;
+    background-color: #fff;
+    border-radius: 20px 20px 0px 0px;
+    width: 100%;
+    height: 80px;
+}
+
+.iconHeader {
+    font-size: 30px;
+    margin-top: 30px;
+}
+
+.textHeader {
+    font-size: 30px;
+    margin-top: 30px;
+}
+
+.fileInput {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+.fileInput   label {
+    color: #717171;
+    background-color: white;
+    display: inline-block;
+    cursor: pointer;
+    padding: .5em 1em;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}   
+
+.cellImage {
+    //border: 1px solid rgb(13, 9, 235);
+    width: 100%;
+    height: 320px;   
+    overflow: hidden;
+    
+}
+.cellImageNull {
+    width: 100%;
+    height: 320px;   
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imageEstab {
+    background-size:cover;
+    background-repeat:no-repeat;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    position: relative;
+}
+
+.detalhe {
+    width: 100%;
+    border: 1px solid #fff;
+    border-radius: 20px 20px 0px 0px;
+    background-color: #fff;
+    margin-top: -15px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.cancelBtn {
+    width: 150px;
+}
+
+.textoInfoImg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.iconPush {
+    font-size: 30px;
+}
+
+.classificacao {
+    background-color: #fff;
+    text-align: right;
+}
+
+.iconStar {
+    font-size: 30px;
+    justify-content: right;
+}
+
+.nomeEstab {
+    width: 100%;
+    //border: 1px solid orange;
+    color: #47525E;
+    background-color: #fff;
+    margin-top: -30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.descEstab {
+    width: 100%;
+    //border: 1px solid orange;
+    color: #8492A6;
+    background-color: #fff;
+    margin-top: -20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.numeros {
+    width: 100%;
+    background-color: #fff;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.actionProfile {
+    width: 100%;
+    background-color: #fff;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.iconProfile {
+    font-size: 30px;
+}
+
+.cardNameDesc {
+    width: auto;
+    height: auto;
+    border-radius: 20px;
+}
+
+ion-label {
+    color: gray;
+}
+
+ion-input{
+    border-radius: 10px;
+    border: 1px solid rgb(201, 198, 198);
+    margin-top: 8px;
+    
+   // background-color: rgb(201, 198, 198);
+}
+
+.profileUser {
+    border-radius: 50%;
+    border: 1px solid #8492A6;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+}
+
+.div_image {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}

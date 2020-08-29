@@ -1,0 +1,218 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Galeria</ion-title>
+    <ion-buttons slot="end">
+      <app-header-toolbar-btns></app-header-toolbar-btns>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="backgroundColor">
+  <ion-scroll>
+    <ion-list>
+      <div class="scroll" scrollX="true">
+
+        <!-- Botão Criar nova categoria -->
+        <ion-card class="cardCategoriaNew" (click)="newAlbumPage()" *ngIf="!isEditAlbum">
+          <ion-card-content>
+            <ion-button ion-button fill="clear">  
+              <ion-icon name="add-outline" class="iconNewAlbum"></ion-icon>
+            </ion-button>
+            <p class="colorText"> Novo álbum </p>
+          </ion-card-content>
+        </ion-card>
+
+        <!-- Modelo em tempo de execução -->
+        <!--<ion-card *ngIf="isNewAlbum" class="cardCategoriaFixo">
+          <ion-card-footer>
+            <h2 class="titleCard"> {{newAlbum.nomeAlbum}} </h2>
+            <p class="descriptionCard"> {{newAlbum.descAlbum}} </p>
+          </ion-card-footer>            
+        </ion-card>-->
+
+        
+        <ion-card class="cardCategoria" *ngFor="let galeriaItem of galerias let i = index" (click)="editAlbum(galeriaItem, i)" [disabled]="galerias[i].disabled">
+          <div class="imageCardArea">
+            <ion-img *ngIf="galeriaItem.urlImage" src="{{ galeriaItem.urlImage }}"></ion-img>
+            <div class="spinnerCard" *ngIf="!galeriaItem.urlImage">
+              <ion-spinner *ngIf="!galeriaItem.urlImage" color="primary" name="circles"></ion-spinner>
+            </div>
+          </div>
+       
+          <ion-card-footer>
+              <h2 class="titleCard"> {{ galeriaItem.nomeAlbum }} </h2>
+              <p class="descriptionCard"> {{ galeriaItem.descAlbum }} </p>
+          </ion-card-footer>
+        </ion-card>
+
+        
+      </div>
+    </ion-list>
+  </ion-scroll>
+
+  <!-- Somente é exibido se não está em modo de criação ou edição de album -->
+  <!--<ion-grid *ngIf="!isNewAlbum && !isEditAlbum">
+    <div class="tutorial">
+
+      <h3> teste </h3>
+    </div>
+    
+  </ion-grid>-->
+
+  <ion-grid>
+    <ion-row>
+      <ion-card *ngIf="isNewAlbum" class="areaNewAlbum">
+        <ion-item-divider color="light">
+          <ion-label *ngIf="isEditAlbum" color="medium"> Edição </ion-label>
+          <ion-label *ngIf="!isEditAlbum" color="medium"> Novo álbum </ion-label>
+          <ion-buttons slot="end">
+            <ion-button *ngIf="isEditAlbum" (click)="deleteAlbumGalery(this.editedAlbum)">
+              <ion-icon name="trash" class="iconTrash" color="danger"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-item-divider>
+            <ion-grid>
+              <form [formGroup]="formNewAlbum">
+                <ion-row size="12">
+                  <ion-col size="4">
+                    <ion-item lines="none" color="colorWhite">
+                      <ion-label position="stacked" > Nome do álbum </ion-label>
+                      <ion-input type="text" maxlength="25" [(ngModel)]="newAlbum.nomeAlbum" formControlName="nomeAlbum"></ion-input>
+                    </ion-item>
+                    <ion-item lines="none" color="colorWhite">
+                      <ion-label position="stacked" > Descrição do álbum </ion-label>
+                      <ion-input type="text" maxlength="35" [(ngModel)]="newAlbum.descAlbum" formControlName="descAlbum"></ion-input>
+                    </ion-item>
+                    <!--<ion-item *ngIf="isEditAlbum" lines="none" color="colorWhite" class="contentCenter">
+                      <ion-button ion-button fill="solid" color="light" (click)="deleteAlbumGalery()"> 
+                        <ion-icon name="trash"></ion-icon>
+                        &nbsp; Deletar este album 
+                      </ion-button>
+                    </ion-item>-->
+                  </ion-col>
+                  <ion-col size="4" >
+                    <!--<ion-label position="stacked" color="medium" > Escolha uma imagem </ion-label>
+                    <ion-input id='selecao-arquivo' class="inputImage" ion-button type="url" accept="image/*" (change)="uploadFile($event.target.files)"></ion-input>-->
+                      <ion-row >
+                        <ion-col class="contentCenter">
+                         
+                            <input type="file" name="file" id="file" class="fileInput" (change)="uploadFileCapa($event.target.files)"/>
+                          
+                            <label for="file" *ngIf="!isEditAlbum" class="sizeLabel"><ion-icon class="iconInputImage" name="image-outline"></ion-icon> &nbsp; Adicionar capa </label>
+                            <label for="file" *ngIf="isEditAlbum" class="sizeLabel"><ion-icon class="iconInputImage" name="image-outline"></ion-icon> &nbsp; Editar capa </label>
+
+                   
+                        </ion-col>
+                      </ion-row>
+                      <ion-row>
+                        <ion-col class="contentLeft">
+                          <ion-input type="url" [(ngModel)]="newAlbum.capa" formControlName="capa" class="inputColor" readonly disabled ></ion-input>
+                        </ion-col>
+                      </ion-row>
+                  </ion-col>
+  
+  
+                  <ion-col *ngIf="isEditAlbum">
+                    <ion-row >
+                      <ion-col class="contentCenter">
+                        <input type="file" name="file" id="file_album" class="fileInput" (change)="uploadFileAlbumItem($event.target.files)" />
+                        <label for="file_album" class="sizeLabel"><ion-icon class="iconInputImage" name="images-outline"></ion-icon> &nbsp; Adicionar foto </label>
+
+                      </ion-col>
+                    </ion-row>
+                    <ion-row class="textInformation">
+                      <p> Importe as imagens para o seu álbum e veja o resultado na lista abaixo. </p> 
+                    </ion-row>
+                  </ion-col>
+                </ion-row>
+                <ion-col>
+                  <ion-row>
+                    <ion-button ion-button fill="solid" color="light" (click)="cancelNewAlbum()" > Cancelar </ion-button>
+                    <ion-button *ngIf="!isEditAlbum" ion-button fill="solid" class="btnSave" color="secondary" (click)="saveNewAlbum()" [disabled]="!formNewAlbum.valid"> Salvar </ion-button>
+                    <ion-button *ngIf="isEditAlbum" ion-button fill="solid" class="btnSave" color="secondary" (click)="editAlbumData()" [disabled]="!formNewAlbum.valid"> Salvar edição </ion-button>
+
+                    <ion-buttons slot="end">
+                      <ion-button  ion-button fill="solid" color="light" (click)="deleteAlbumGalery()"> 
+                        <ion-icon name="trash"></ion-icon>
+                        &nbsp; Deletar este álbum 
+                      </ion-button>
+                    </ion-buttons>
+
+
+                  </ion-row>
+                </ion-col>
+
+              </form>
+
+            </ion-grid>
+       
+        
+      </ion-card>
+
+    </ion-row>
+  </ion-grid>
+
+
+  <ion-grid *ngIf="isEditAlbum">
+    <h3 class="titleImgGalery"> Fotos do álbum </h3> 
+    <ion-row>
+      <ion-card class="albumCardImage" *ngFor="let imagesById of imagesAlbumById">
+        
+        <ion-img class="imageAlbumCard" src="{{ imagesById.imageItem }}"></ion-img>
+        <ion-button ion-button fill="solid" class="btnDeleteImgAlbum" color="danger" (click)="deleteImgFromAlbum(imagesById.imagePath, imagesById)" > 
+          <ion-icon slot="start" name="trash"></ion-icon>
+          deletar 
+        </ion-button>
+        
+      </ion-card>
+  
+    </ion-row>
+    <ion-grid>
+      <ion-row class="btnCarregarTodas">
+        <div class="spinnerCard" *ngIf="spinner">
+          <ion-spinner *ngIf="spinner" color="primary" name="circles"></ion-spinner>
+        </div>
+      </ion-row>
+      <ion-row >
+        <ion-col size="12" class="areaBtnCarregarTodas" *ngIf="">
+          <ion-button ion-button fill="outline" (click)="loadAllImagesAlbum(editedAlbum.albumId)"> Carregar todas </ion-button>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </ion-grid>
+
+
+        <!--<ion-card-header> 
+          <ion-card-title>
+            Imagens importadas     
+          </ion-card-title>
+        </ion-card-header>
+        <ion-scroll>
+          <ion-list>
+            <div class="scroll">
+              <ion-item *ngFor="let i of [1,2,3]">
+                <ion-thumbnail slot="start"> 
+                  <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+                </ion-thumbnail>
+                <ion-label> url item </ion-label>
+                <ion-buttons slot="end">
+                  <ion-button ion-button fill="outline" color="danger"> Excluir </ion-button>
+                </ion-buttons>
+              </ion-item>
+
+            </div>
+      
+          </ion-list>
+        </ion-scroll>
+        
+      </ion-card>-->
+
+    
+ 
+
+
+  
+
+
+</ion-content>

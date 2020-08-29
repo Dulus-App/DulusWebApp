@@ -8,7 +8,21 @@
 </ion-header>
 
 <ion-content class="backgroundColor">
-  <p> {{userData.uid}} </p>
-  <p> {{userData.nome}} </p>
-  <p> {{userData.email}} </p>
+  <ion-tabs>
+    <ion-tab-bar class="tabHeight" slot="bottom">
+      <ion-tab-button tab="profile-names" >
+        <ion-icon class="iconTabs" name="person-circle"></ion-icon>
+        <ion-label>Meu Perfil</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="profile-servicos">
+        <ion-icon class="iconTabs" name="layers-outline"></ion-icon>
+        <ion-label>Serviços</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+
+  <ion-grid>
+    
+  </ion-grid>
 </ion-content>

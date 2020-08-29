@@ -29,6 +29,7 @@
     "angularfire2": "^5.4.2",
     "cordova-plugin-advanced-http": "^2.5.1",
     "cordova-sqlite-storage": "^5.0.0",
+    "file-drop-element": "^0.2.0",
     "firebase": "^7.14.5",
     "ng-recaptcha": "^5.0.0",
     "ngx-captcha": "^5.0.4",
